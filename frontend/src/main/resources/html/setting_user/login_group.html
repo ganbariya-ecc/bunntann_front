@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン画面</title>
+    <link rel="stylesheet" href="/frontend/src/main/resources/static/setting_user/login_group.css">
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            height: 20%;
+        }
+
+        main {
+            height: 50%;
+        }
+
+        footer {
+            height: 30%;
+        }
+    </style>
+</head>
+
+<body class="bg-orange-100  m-0 p-0 ">
+    <!-- title -->
+    <header class="pr-24 pl-24 pt-52">
+        <h1 class="text-8xl text-center mt-24 text-orange-600 font-bold">分担ちゃん</h1>
+    </header>
+    <!-- main -->
+    <main class="p-10 ">
+        <p class="text-6xl mt-48 text-center">グループを作成しますか？</p>
+        <p class="text-3xl mt-7 text-center">または既にあるグループに参加しますか？</p>
+        <div class="grid justify-center">
+            <button class="mt-16 text-6xl bg-orange-300 font-light w-fit pt-10 pb-10 pr-28 pl-28">グループ作成</button>
+            <p class="text-3xl mt-7 text-center text-gray-400">----------or----------</p>
+            <button class="mt-16 text-6xl bg-green-400 font-light w-fit pt-10 pb-10 pr-28 pl-28">グループ参加</button>
+        </div>
+    </main>
+    <footer class="p-1">
+        <img class="w-full h-auto " src="/frontend/images/Fuzzy Friends Plein Air Painting Trip.png" alt="下の画像">
+    </footer>
+</body>
+
+</html>

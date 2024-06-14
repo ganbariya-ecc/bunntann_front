@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>タスク一覧画面</title>
+        <link rel="stylesheet" href="/frontend/src/main/resources/static/user/tasks/task_list.css">
+        <!-- Google font Icon -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
+        <style>
+            
+            #add_circle {
+            font-size: 60px;
+            color: white;
+            background-color: #a0a2a5;
+            border-radius: 50%;
+            padding: 5px;
+            }
+            #check_circle {
+            font-size: 80px;
+            border-radius: 50%;
+            padding: 5px;
+            }
+            #check_circle.completed {
+                color: rgb(255 237 213);
+            }
+            #check_circle.incomplete {
+                color: #a0a2a5;
+            }
+            body {
+                height: 100vh;
+                overflow: hidden;
+                header {
+                    height: 20%;
+                }
+                main{
+                    height: 50%;
+                }
+                footer{
+                    height: 30%;
+                }
+            }
+            #display-container, #moreTask-display-container {
+                max-height:1200px;
+            }
+        </style>
+    </head>
+    <body class="bg-orange-50">
+        <!-- header要素 -->
+        <header class="h-40 bg-orange-50 flex items-center">
+            <!-- ハンバーガーメニュー -->
+            <div class=" w-32 h-32 absolute left-5">
+                    <span class="bg-black h-2 w-24 absolute top-8 left-3.5"></span>
+                    <span class="bg-black h-2 w-24 absolute top-14 left-3.5"></span>
+                    <span class="bg-black h-2 w-24 absolute top-20 left-3.5"></span>
+            </div>
+
+            <!-- iconとalarmの画像配置-->
+            <div class="flex  justify-center absolute right-3">
+                <img class="w-24 h-24 bg-white rounded-full  mr-3 " src="/frontend/images/alarm.png" alt="alarm">
+                <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon">
+            </div>
+        </header>
+        <!-- main要素 -->
+        <main>
+            <!--　見出し　-->
+            <div class="flex justify-between mt-6">
+                <h2 class="text-6xl mt-6 ml-14 text-orange-400">お手伝いリスト</h2>
+                <!-- add circle -->
+                <span id="add_circle" class="material-icons mt-6 mb-4 mr-20">add_circle</span>
+            </div>
+            <!-- タスクの表示-->
+            <div id="display-container" class="bg-orange-100 border-orange-100 border-4 mt-4 mb-5 w-11/12  pt-10 pr-12 pl-12 pb-16 mr-auto ml-auto h-auto rounded-3xl overflow-y-scroll">
+                <!--タスクが追加される-->
+                <div id="task-container" class="bg-orange-100 border-orange-100 border-4 mt-5 mb-5 w-11/12 mr-auto ml-auto h-auto rounded-3xl"></div>
+
+            </div>
+            <!--　見出し　-->
+            <div class="flex justify-between mt-9">
+                <h2 class="text-6xl mt-6 ml-14 text-orange-400">もっと手伝う・・・</h2>
+                <!-- add circle -->
+                <span id="add_circle" class="material-icons mt-6 mb-4 mr-20">add_circle</span>
+            </div>
+            <!-- タスクの表示-->
+            <div id="more-display-container" class="bg-orange-100 border-orange-100 border-4 mt-4 mb-5 w-11/12  pt-10 pr-12 pl-12 pb-16 mr-auto ml-auto h-auto rounded-3xl overflow-y-scroll">
+                <!--タスクが追加される-->
+                <div id="more-task-container" class="bg-orange-100 border-orange-100 border-4 mt-5 mb-5 w-11/12 mr-auto ml-auto h-auto rounded-3xl"></div>
+            </div>
+        </main>
+        <!--script要素 -->
+        <script>
+            // サンプルデータ
+            const tasks = [
+            { name: 'ゴミ', completed: true },
+            { name: 'かいもの', completed: false },
+            { name: 'せんたく', completed: true },
+            { name: 'そうじ', completed: false },
+            { name: 'さらあらい', completed: true },
+            { name: 'りょうり', completed: false }
+        ];
+
+            // タスクの表示
+            const taskContainer = document.getElementById('task-container');
+
+            tasks.forEach(task => {
+                const taskDiv = document.createElement('div');
+                taskDiv.className = 'flex items-center bg-orange-50 border-4 border-orange-100 mt-8 mb-14 w-auto h-36 rounded-3xl relative';
+
+                const checkSpan = document.createElement('span')
+                checkSpan.id = 'check_circle';
+                checkSpan.className = 'material-icons absolute left-4';
+                checkSpan.textContent ='check_circle';
+                checkSpan.classList.add(task.completed ? 'completed' : 'incomplete');
+
+                const taskText = document.createElement('p');
+                taskText.textContent = task.name;
+                taskText.className = 'text-6xl font-bold text-center flex-grow mx-auto';
+                
+                taskDiv.appendChild(checkSpan);
+                taskDiv.appendChild(taskText);
+                taskContainer.appendChild(taskDiv);
+            });
+
+            // もっと手伝うタスクの表示
+            const moreTasks = [
+                { name: '犬の散歩', completed: false },
+            ];
+            // 追加タスクの表示
+            const moreTaskContainer = document.getElementById('more-task-container');
+
+            moreTasks.forEach(task => {
+                const taskDiv = document.createElement('div');
+                taskDiv.className = 'flex items-center bg-orange-50 border-4 border-orange-100 mt-8 mb-14 w-auto h-36 rounded-3xl relative';
+
+                const checkSpan = document.createElement('span');
+                checkSpan.id = 'check_circle';
+                checkSpan.className = 'material-icons absolute left-4';
+                checkSpan.textContent = 'check_circle';
+                checkSpan.classList.add(task.completed ? 'completed' : 'incomplete');
+
+                const taskText = document.createElement('p');
+                taskText.textContent = task.name;
+                taskText.className = 'text-6xl font-bold text-center flex-grow mx-auto';
+                
+                taskDiv.appendChild(checkSpan);
+                taskDiv.appendChild(taskText);
+                moreTaskContainer.appendChild(taskDiv);
+            });
+        </script>
+    </body>
+</html>
