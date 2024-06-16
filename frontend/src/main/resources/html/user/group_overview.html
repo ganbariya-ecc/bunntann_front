@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>グループ情報</title>
         <link rel="stylesheet" href="/frontend/src/main/resources/static/user/group_overview.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <style>
@@ -150,6 +151,9 @@
                 transform: translateX(0);
                 /* 画面幅の30%にメニューを表示 */
             }
+            #add-icon{
+                font-size: 60px;
+            }
         </style>
     </head>
     <body class="bg-orange-100">
@@ -178,7 +182,15 @@
             </div>
         </header>
         <main class="bg-orange-100">
+            <!-- グループ作成ボタン -->
+            <div class="flex items-center justify-center bg-orange-50 w-5/6 h-36 mt-12 mx-auto border-4 rounded-3xl">
+                <p class="text-6xl text-center flex-grow">グループ作成</p>
+                <span id="add-icon" class="material-icons absolute right-36">add</span>
+            </div>
+            <!-- グループ情報 -->
+            <div>
 
+            </div>   
         </main>
         <script>
             // ハンバーガーメニューのjs
