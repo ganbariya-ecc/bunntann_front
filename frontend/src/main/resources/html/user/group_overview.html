@@ -151,8 +151,14 @@
                 transform: translateX(0);
                 /* 画面幅の30%にメニューを表示 */
             }
-            #add-icon{
-                font-size: 60px;
+            .groupsContainer{
+                min-height: 900px;
+            }
+            #adminsContainer{
+                height: 440px;
+            }
+            #membersContainer{
+                height: 360px;
             }
         </style>
     </head>
@@ -183,8 +189,8 @@
         </header>
         <main class="bg-orange-100">
             <!-- グループ情報 -->
-            <div>
-                
+            <div class="groupsContainer bg-orange-50 w-5/6 h-auto mx-auto mt-10 mb-12 border-4 rounded-3xl">
+                </div>
             </div>   
         </main>
         <script>
@@ -194,6 +200,95 @@
                     $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
                     $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
                 });
+            });
+            // サンプルデータ
+            const groups = [
+                {
+                    name: 'A Group',
+                    admins: [
+                        { id: 1, name: 'お母さん', icon: '/frontend/images/mother_image.png', password: 'password1' },
+                        { id: 4, name: 'おとうと', icon: '/frontend/images/youngerBrother_image.png', password: 'password4' }
+                    ],
+                    members: [
+                        { id: 2, name: 'お父さん', icon: '/frontend/images/father_image.png', password: 'password2' },
+                        { id: 3, name: 'お兄さん', icon: '/frontend/images/olderBrother_image.png', password: 'password3' },
+                        { id: 4, name: 'おとうと', icon: '/frontend/images/youngerBrother_image.png', password: 'password4' },
+                    ]
+                    
+                }
+            ];
+            const groupsContainer = document.querySelector('.groupsContainer');
+            // 管理者を表示する関数
+            function showAdmins(admins) {
+                const adminsContainer = document.createElement('div');
+                adminsContainer.id = 'adminsContainer';
+                adminsContainer.className ='flex flex-wrap';
+
+                admins.forEach((admin) => {
+                    const adminDiv = document.createElement('div');
+                    adminDiv.className = 'flex-grow text-center';
+
+                    // アイコンの作成
+                    const icon = document.createElement('img');
+                    icon.src = admin.icon;
+                    icon.className = 'w-72 h-72 rounded-full mx-auto';
+                    adminDiv.appendChild(icon);
+
+                    // 名前の追加
+                    const adminName = document.createElement('p');
+                    adminName.className = 'text-3xl font-bold mt-12';
+                    adminName.textContent = admin.name;
+                    adminDiv.appendChild(adminName);
+
+                    adminsContainer.appendChild(adminDiv);
+                });
+                return adminsContainer;
+            }
+
+            // メンバーを表示する関数
+            function showMembers(members){
+                const membersContainer = document.createElement('div');
+                membersContainer.id = 'membersContainer';
+                membersContainer.className = 'flex flex-wrap';
+
+                members.forEach((member, index) => {
+                    const memberDiv = document.createElement('div');
+                    memberDiv.className = 'flex-grow text-center';
+
+                    // アイコンの作成
+                    const icon = document.createElement('img');
+                    icon.src = member.icon;
+                    icon.className = 'w-44 h-44 rounded-full mx-auto';
+                    memberDiv.appendChild(icon);
+
+                    // 名前の追加
+                    const memberName = document.createElement('p');
+                    memberName.className = 'text-3xl font-bold mt-8';
+                    memberName.textContent = member.name;
+                    memberDiv.appendChild(memberName);
+
+                    membersContainer.appendChild(memberDiv);
+                });
+                return membersContainer;
+            }
+
+            // グループの表示
+            groups.forEach((group) => {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'group';
+
+                const groupName = document.createElement('h1');
+                groupName.className = 'text-6xl text-gray-800 mt-16 mb-16 ml-12';
+                groupName.textContent = group.name;
+                groupDiv.appendChild(groupName);
+
+                const adminsContainer = showAdmins(group.admins);
+                const membersContainer = showMembers(group.members);
+
+                groupDiv.appendChild(adminsContainer);
+                groupDiv.appendChild(membersContainer);
+
+                groupsContainer.appendChild(groupDiv);
             });
         </script>
     </body>
