@@ -188,6 +188,35 @@
             #check_circle.incomplete {
                 color: #a0a2a5;
             }
+            #progress_container{
+                height: 120px;
+                border-color: rgb(255,231,204);
+                background-color: rgb(255,231,204);
+            }
+            progress{
+                width: 730px;
+                height: 30px;
+                border-radius: 8px;
+            }
+            progress::-webkit-progress-bar {
+            background-color: rgb(255 247 237);
+            border-radius: 8px;
+            }
+
+            progress::-webkit-progress-value {
+            background-color: rgba(105, 189, 237, 0.751);
+            border-radius: 8px;
+            }
+
+            progress::-moz-progress-bar {
+            background-color: violet;
+            border-radius: 8px;
+            }
+
+            progress::-ms-fill {
+            background-color: violet;
+            border-radius: 8px;
+            }
         </style>
         </head>
         <body class="bg-orange-100">
@@ -228,6 +257,10 @@
                 <!-- タスクリストコンテナ -->
                 <div id="task_container" class="border-4 rounded-t-lg w-11/12 mx-auto mt-10 pt-12 px-20 overflow-scroll">
                     <!-- タスクが表示される -->
+                </div>
+                <!-- プログレスバー -->
+                <div id="progress_container" class="border-4 rounded-b-lg w-11/12 mx-auto px-20 pt-10">
+                    <progress max="100" value="75"></progress>
                 </div>
             </main>
             <script>
