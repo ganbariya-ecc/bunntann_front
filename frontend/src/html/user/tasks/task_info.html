@@ -2,10 +2,9 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>ポイント管理</title>
-        <link rel="stylesheet" href="/frontend/src/main/resources/static/user/point_mgmt.css">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <title>タスクの</title>
+        <link rel="stylesheet" href="/frontend/src/css/user/tasks/task_info.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
         <style>
             body {
                 height: 100vh;
@@ -150,10 +149,39 @@
                 transform: translateX(0);
                 /* 画面幅の30%にメニューを表示 */
             }
-            /* タイトル文字の間隔 */
-            h1,h2 {
-                letter-spacing: .1em;
+            .material-icons {
+                font-size: 90px;
             }
+            #status-message ,#task-message, #task-deadline {
+                font-size: 40px;
+                line-height: 1;
+            }
+            #countdown .text-red-500 {
+                font-size: 50px; /* カウントダウンの文字サイズ */
+            }
+            /*戻るボタン、終わりボタンのスタイル*/
+            .back-btn{
+                background-color: #3bc28e; /* ボタンの背景色 */
+                border-bottom: 4px solid #FFA07A; /* 下線の色 */
+                box-shadow: 0.1em 0.1em 3px rgba(0, 0, 0, 0.5); /* 影の設定 */
+                width: 350px; 
+                height: 125px;
+                border: none;
+                border-radius: 30px;
+                font-size: 40px;
+            }
+            .end-btn{
+                background-color: #FFCCC0; /* ボタンの背景色 */
+                border-bottom: 4px solid #FFA07A; /* 下線の色 */
+                box-shadow: 0.1em 0.1em 3px rgba(0, 0, 0, 0.5); /* 影の設定 */
+                width: 350px; 
+                height: 125px;
+                border: none;
+                border-radius: 30px;
+                font-size: 40px;
+            }
+
+            
         </style>
     </head>
     <body class="bg-orange-100">
@@ -163,7 +191,7 @@
             <button type="button" class="btn js-btn">
                 <span class="btn-line"></span>
             </button>
-
+    
             <!-- メニューオーバーレイ -->
             <!-- TODO:表示メニューの調整 -->
             <nav>
@@ -174,72 +202,110 @@
                     <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a></li>
                 </ul>
             </nav>
-
+    
             <!-- iconとalarmの画像配置 -->
             <div class="flex justify-center absolute right-3">
                 <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" />
                 <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
             </div>
         </header>
-        <main>
-            <!-- タイトル -->
-            <h1 class="text-8xl text-orange-500 mt-24 ml-14">ポイント</h1>
-            <!-- ポイント表示　-->
-            <div class="flex items-center justify-center h-2/6">
-                <p id="points" class="text-center text-4xl"><span id="points-span" class="text-8xl">ポイント</span>pt</p>
+        <!-- main要素 -->
+        <main class="flex flex-col items-center">
+            <!-- タスクタイトル表示 -->
+            <div class="flex justify-center items-end mt-14 pb-4">
+                <h1 class="text-8xl text-orange-500 font-bold flex justify-center items-end">タスクのタイトル</h1>
             </div>
-            <!-- ランキング -->
-            <div class="items-center border-l-orange-200 bg-orange-200 boorder-4 w-4/5 h-4/6 mr-auto ml-auto rounded-3xl">
-                <h2 class="text-center text-orange-500 text-7xl pt-12">ランキング</h2>
-                <!-- ランキングコンテナ -->
-                    <div id="ranking" class="h-5/6 w-4/5 mt-16 mr-auto ml-auto overflow-y-scroll">
-                        <!-- ランキングの表示-->
-                    </div>
-                <div>
-                    
+            <!-- 現在のステータスを表示 -->
+            <div class="flex border-orange-200 bg-orange-200 border-4 mt-16 w-4/5 h-56 items-center rounded-3xl">
+                <span class="material-icons text-orange-500 ml-12">notifications</span>
+                <span class="ml-6" id="status-message">ステータスメッセージの表示</span>
+            </div>
+            <!-- タスクの詳細コンテナ　-->
+            <div class="task-info-container flex flex-col items-center mt-10 ml-16 mr-16 pl-8 pr-8 w-9/12 h-4/6">
+                <!-- タスクの残り時間の表示 -->
+                <div class="pb-10" id="countdown">
+                    <span class="text-red-500"id="days"></span>
+                    <span class="text-red-500"id="hours"></span>
+                    <span class="text-red-500"id="minutes"></span>
+                    <span class="text-red-500"id="seconds"></span>
+                </div>
+                <!-- タスクのイメージ画像　-->
+                <div class="rounded-3xl overflow-hidden h-3/6">
+                    <img src="" alt="Task Image" class="w-full h-full" id="task-image"/>
+                </div>
+                <!-- メッセージコンテナ -->
+                <div class="mt-14 h-2/6">
+                    <p class="leading-normal tracking-widest" id="task-message">タスクに対するメッセージを表示</p>
                 </div>
             </div>
+            <!-- ボタン　-->>
+            <div class="flex justify-between">
+                <button class="back-btn text-center mr-20">戻る</button>
+                <button class="end-btn text-center">終わり</button>
+            </div>
         </main>
+        <!-- script要素 -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
-            // ハンバーガーメニューのjsd
+            // ハンバーガーメニューのjs
             $(function () {
                 $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
                     $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
                     $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
                 });
             });
-
             // サンプルデータ
-            const sampleData = {
-                points: 12000,
-                ranking: [
-                    { name: "お母さん", points: 8000 },
-                    { name: "お兄さん", points: 7000 },
-                    { name: "いもうと", points: 12000 },
-                    { name: "お父さん", points: 5000 }
-                ]
+            const task = {
+                status: '手伝ってください！',
+                title: 'かいもの',
+                image: '/frontend/images/supermarket.png', //　画像URL
+                message: 'ライフスーパーにパスタソースをかってほしい。\nじぶんが好きなあじをえらんでもいいよ。\nおねがい。',
+                deadline: '2024/06/05 19:30'
             };
+    
+            // 改行文字を <br> に変換
+            const formattedMessage = task.message.replace(/\n/g, '<br>');
+            // データをDOMに表示
+            document.getElementById('status-message').textContent = task.status;
+            document.querySelector('h1').textContent = task.title;
+            document.getElementById('task-image').src = task.image;
+            document.getElementById('task-message').innerHTML = formattedMessage;
 
-            // データをポイントの多い順にソート
-            sampleData.ranking.sort((a, b) => b.points - a.points);
+            // カウントダウンのサンプルコードのコピー
+            $(document).ready(function() {
+                // カウントダウンの終了日時を設定
+                let countdownDate = new Date("2024-06-12T00:00:00");
 
-            // ポイントを表示
-            document.getElementById('points-span').textContent = sampleData.points;
+                let x = setInterval(function() {
+                    
+                    // 現在の日時を取得
+                    let now = new Date();
+                    
+                    // カウントダウンまでの残り時間を計算
+                    let distance = countdownDate - now;
 
-            // ランキングを表示
-            const rankingContainer = document.getElementById('ranking');
-            sampleData.ranking.forEach((item, index) => {
-                const rankingItem = document.createElement('div');
-                rankingItem.className = 'flex justify-between items-center bg-orange-50 h-36 mb-10 rounded-3xl';
-                rankingItem.innerHTML = `
-                    <div class="flex items-center">
-                        <span class="text-7xl ml-4">${index + 1}</span>
-                        <span class="text-6xl ml-6">${item.name}</span>
-                    </div>
-                    <span class="text-5xl mr-4">${item.points}pt</span>
-                `;
-                rankingContainer.appendChild(rankingItem);
+                    // 残り時間を日数、時間、分、秒に変換
+                    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // カウントダウンが終了した場合はメッセージを表示してタイマーを停止
+                    if (distance < 0) {
+                    clearInterval(x);
+                    $("#countdown").html("<span>カウントダウン終了</span>");
+                    } else {
+                    // 残り時間を表示
+                    $("#days").text(days + ":");
+                    $("#hours").text(hours + ":");
+                    $("#minutes").text(minutes + ":");
+                    $("#seconds").text(seconds + ":");
+                    }
+                }, 1000); // 1000ミリ秒ごとに更新
             });
+
         </script>
     </body>
 </html>
