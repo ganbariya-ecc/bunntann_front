@@ -4,45 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <title>ログイン画面</title>
-    <link rel="stylesheet" href="/frontend/src/css/setting_user/login_group.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Yusei+Magic&display=swap" rel="stylesheet">
     <style>
         body {
             height: 100vh;
             overflow: hidden;
+            background: rgba(246, 219, 186, 0.5);
+            font-family: "Kiwi Maru", serif;
         }
 
-        header {
-            height: 20%;
+        .create {
+            background-color: #4AB4A1;
+            border-radius: 30px;
+            box-shadow: rgba(0, 0, 0, 0.647) 0px 5px 10px;
         }
 
-        main {
-            height: 50%;
-        }
+        .join {
+            background-color: #71CDEE;
+            border-radius: 30px;
+            box-shadow: rgba(0, 0, 0, 0.647) 0px 5px 10px;
 
-        footer {
-            height: 30%;
         }
     </style>
 </head>
 
-<body class="bg-orange-100  m-0 p-0 ">
+<body>
     <!-- title -->
-    <header class="pr-24 pl-24 pt-52">
-        <h1 class="text-8xl text-center mt-24 text-orange-600 font-bold">分担ちゃん</h1>
+    <header class="flex justify-center items-center h-1/2">
+        <img class="w-full h-auto" src="/frontend/images/rogo.png" alt="ロゴ">
     </header>
+
     <!-- main -->
-    <main class="p-10 ">
-        <p class="text-6xl mt-48 text-center">グループを作成しますか？</p>
-        <p class="text-3xl mt-7 text-center">または既にあるグループに参加しますか？</p>
-        <div class="grid justify-center">
-            <button class="mt-16 text-6xl bg-orange-300 font-light w-fit pt-10 pb-10 pr-28 pl-28">グループ作成</button>
-            <p class="text-3xl mt-7 text-center text-gray-400">----------or----------</p>
-            <button class="mt-16 text-6xl bg-green-400 font-light w-fit pt-10 pb-10 pr-28 pl-28">グループ参加</button>
+    <main class="flex flex-col justify-center items-center  w-full">
+        <p class="text-6xl text-center">グループを作成しますか？</p>
+        <p class="text-4xl mt-7 text-center">または既にあるグループに参加</p>
+
+        <!-- 選択肢 -->
+        <div class="flex flex-col items-center w-full">
+            <button onclick="location.href='new_user.html'"
+                class="mt-16 text-5xl font-light w-4/5 py-5 create">グループ作成</button>
+            <p class="text-6xl mt-7 text-center text-gray-400">----------------or----------------</p>
+            <button class="mt-16 text-5xl font-light w-4/5 py-5 join">グループ参加</button>
         </div>
     </main>
-    <footer class="p-1">
-        <img class="w-full h-auto " src="/frontend/images/Fuzzy Friends Plein Air Painting Trip.png" alt="下の画像">
-    </footer>
 </body>
 
 </html>
