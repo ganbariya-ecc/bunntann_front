@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>管理者タスクリスト</title>
+        <link rel="stylesheet" href="/frontend/src/css/admin/admin_task_list.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <!-- Google fonts Icon -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
+        <style>
+            body {
+                height: 100vh;
+                overflow: hidden;
+                header {
+                    height: 20%;
+                }
+                main{
+                    height: 80%;
+                }
+                /* footer{
+                    height: 30%;
+                } */
+            }
+            button {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                vertical-align: middle;
+                border: 0;
+                background: transparent;
+                border-radius: 0;
+                text-align: inherit;
+                display: inline-block;
+                justify-content: center;
+                align-items: center;
+            }
+
+            button:hover {
+                cursor: pointer;
+            }
+            /* ハンバーガーメニューのスタイル */
+            .btn {
+                /* ボタンの配置位置 */
+                position: fixed;
+                top: 30px;
+                left: 30px;
+                /* ボタンの大きさ */
+                width: 72px;
+                height: 64px;
+                /* 最前面に */
+                z-index: 10;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* 真ん中のバーガー線 */
+            .btn-line {
+                /* 線の長さと高さ */
+                width: 100%;
+                height: 4px;
+                /* バーガー線の色 */
+                background-color: #333;
+                /* バーガー線の位置基準として設定 */
+                position: relative;
+                transition: .2s;
+            }
+
+            /* バーガー線の位置 */
+            .btn-line::before,
+            .btn-line::after {
+                content: "";
+                /* 基準線と同じ大きさと色 */
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: #333;
+                transition: .2s;
+            }
+
+            .btn-line::before {
+                /* 上の線の位置 */
+                transform: translateY(-16px);
+            }
+
+            .btn-line::after {
+                /* 下の線の位置 */
+                transform: translateY(16px);
+            }
+
+            /* メニューが開いているとき */
+            .btn.open {
+                transform: rotate(180deg);
+            }
+
+            .btn-line.open {
+                /* 真ん中の線を透明に */
+                background-color: transparent;
+            }
+
+            .btn-line.open::before,
+            .btn-line.open::after {
+                content: "";
+                /* 上下の線の色を変える */
+                background-color: #333;
+                transition: .2s;
+            }
+
+            .btn-line.open::before {
+                /* 上の線を傾ける */
+                transform: rotate(135deg);
+            }
+
+            .btn-line.open::after {
+                /* 上の線を傾ける */
+                transform: rotate(-135deg);
+            }
+
+            /* メニューのスタイル */
+            .menu {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 70%;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                color: #efefef;
+                transition: .3s;
+                z-index: 9;
+                padding: 10px;
+                /* メニューが開いたときに他のコンテンツを右にずらす */
+                transform: translateX(-100%);
+            }
+
+            .menu-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .menu-list:hover {
+                color: #333;
+                background-color: rgba(255, 255, 255, 0.5);
+                transition: .3s;
+                cursor: pointer;
+            }
+
+            /* メニューを開いたとき */
+            .menu.open {
+                transform: translateX(0);
+                /* 画面幅の30%にメニューを表示 */
+            }
+            /* タイトル文字の間隔 */
+            h1 {
+                letter-spacing: .2em;
+            }
+            #add_circle{
+                font-size: 60px;
+                color: white;
+                background-color: black;
+                border-radius: 50%;
+                padding: 1px;
+            }
+            /* 新規作成ボタンのスタイル */
+            #new_createBtn{
+                background-color: white;
+                /* border: 4px solid;
+                border-color: black; */
+                border-radius: 100vh;
+                width: 200px;
+            }
+            #task_container{
+                height: 1580px;
+                border-color: rgb(255,231,204);
+                background-color: rgb(255,231,204);
+            }
+            /* タスクの完了・未完了チェックマークのスタイル */
+            #check_circle {
+            font-size: 80px;
+            border-radius: 50%;
+            padding: 5px;
+            }
+            #check_circle.completed {
+                color: rgb(255 237 213);
+            }
+            #check_circle.incomplete {
+                color: #a0a2a5;
+            }
+            #progress_container{
+                height: 120px;
+                border-color: rgb(255,231,204);
+                background-color: rgb(255,231,204);
+            }
+            progress{
+                width: 730px;
+                height: 30px;
+                border-radius: 8px;
+            }
+            progress::-webkit-progress-bar {
+            background-color: rgb(255 247 237);
+            border-radius: 8px;
+            }
+
+            progress::-webkit-progress-value {
+            background-color: rgba(105, 189, 237, 0.751);
+            border-radius: 8px;
+            }
+
+            progress::-moz-progress-bar {
+            background-color: violet;
+            border-radius: 8px;
+            }
+
+            progress::-ms-fill {
+            background-color: violet;
+            border-radius: 8px;
+            }
+        </style>
+        </head>
+        <body class="bg-orange-100">
+            <!-- header要素 -->
+            <header class="h-40 bg-orange-100 flex items-center">
+                <!-- ハンバーガーメニュー -->
+                <button type="button" class="btn js-btn">
+                    <span class="btn-line"></span>
+                </button>
+    
+                <!-- メニューオーバーレイ -->
+                <!-- TODO:表示メニューの調整 -->
+                <nav>
+                    <ul class="menu bg-orange-200">
+                        <li class="menu-list "><a href="#" class="pt-24 pb-2 px-4  block ">ロゴ</a></li>
+                        <li class="menu-list"><a href="#" class="py-2 px-4  block hover:text-white">ポイント</a></li>
+                        <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">タスク管理</a></li>
+                        <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a></li>
+                    </ul>
+                </nav>
+    
+                <!-- iconとalarmの画像配置 -->
+                <div class="flex justify-center absolute right-3">
+                    <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" />
+                    <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
+                </div>
+            </header>
+            <!-- main要素 -->
+            <main>
+                <!-- タイトルとタスクの新規作成ボタン -->
+                <div class="flex justify-between mt-10">
+                    <h1 class="text-orange-400 text-7xl ml-9">タスクリスト</h1>
+                    <button id="new_createBtn" class="flex justify-between mr-10">
+                        <span id="add_circle" class="material-icons ml-4">add_circle</span>
+                        <p class="text-3xl mr-10">新規</p>
+                    </button>
+                </div>
+                <!-- タスクリストコンテナ -->
+                <div id="task_container" class="border-4 rounded-t-lg w-11/12 mx-auto mt-10 pt-12 px-20 overflow-scroll">
+                    <!-- タスクが表示される -->
+                </div>
+                <!-- プログレスバー -->
+                <div id="progress_container" class="border-4 rounded-b-lg w-11/12 mx-auto px-20 pt-10">
+                    <progress max="100" value="75"></progress>
+                </div>
+            </main>
+            <script>
+                // ハンバーガーメニューのjsd
+                $(function () {
+                    $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
+                        $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
+                        $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
+                    });
+                });
+
+                // サンプルデータ
+                const tasks = [
+                    { name: 'ゴミ', completed: true },
+                    { name: 'かいもの', completed: false },
+                    { name: 'せんたく', completed: true },
+                    { name: 'そうじ', completed: false },
+                    { name: 'さらあらい', completed: true },
+                    { name: 'りょうり', completed: false }
+                ];
+
+                // タスクリストの表示
+                const task_list = document.getElementById('task_container');
+                tasks.forEach(task => {
+                    // タスクのコンテナを作成
+                    const task_item = document.createElement('div');
+                    task_item.className = 'flex items-center w-auto h-36 bg-orange-50 border-4 border-orange-50 rounded-3xl mt-10 mb-16 relative';
+
+                    // タスクのチェックボタンを表示
+                    const checkSpan = document.createElement('span')
+                    checkSpan.id = 'check_circle';
+                    checkSpan.className = 'material-icons absolute left-4';
+                    checkSpan.textContent ='check_circle';
+                    checkSpan.classList.add(task.completed ? 'completed' : 'incomplete');
+
+                    // タスクの名前を表示
+                    const taskText = document.createElement('p');
+                    taskText.textContent = task.name;
+                    taskText.className = 'text-6xl text-center flex-grow mx-auto';
+
+                    // タスクのコンテナに追加
+                    task_item.appendChild(checkSpan);
+                    task_item.appendChild(taskText);
+                    task_list.appendChild(task_item);
+                });
+            </script>
+        </body>
+</html>
