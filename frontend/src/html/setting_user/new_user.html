@@ -19,32 +19,28 @@
         /* ボタンの箱の形 */
         .login-button {
             width: 100%;
-            height: 60px;
+            height: 80px;
             background-color: WHITE;
             margin: 10px 0;
             border: 1px solid #747775;
-            border-radius: 30px;
+            border-radius: 20px;
             box-sizing: border-box;
             color: #333;
             cursor: pointer;
-            font-family: 'Roboto', arial, sans-serif;
-            font-size: 14px;
             letter-spacing: 2px;
-            padding: 0px 20px;
+            padding: 0px 30px;
             position: relative;
             text-align: center;
             transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
             vertical-align: middle;
-            white-space: nowrap;
-            max-width: 400px;
         }
 
         /* アイコンのサイズ */
         .login-button .login-button-icon {
-            height: 20px;
+            height: 60px; /* アイコンのサイズを増加 */
             margin-right: 20px;
-            min-width: 20px;
-            width: 20px;
+            min-width: 60px;
+            width: 60px;
         }
 
         /* ボタン内のテキストの配置 */
@@ -54,15 +50,14 @@
             flex-direction: row;
             flex-wrap: nowrap;
             height: 100%;
-            justify-content: space-between;
             position: relative;
             width: 100%;
         }
 
         /* ボタン内のテキストのフォント */
         .login-button .login-button-contents {
+            font-size: 48px;
             flex-grow: 1;
-            font-family: 'Roboto', arial, sans-serif;
             font-weight: 500;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -101,18 +96,18 @@
         <img class="w-full h-auto" src="/frontend/images/rogo.png" alt="ロゴ">
     </header>
     <!-- main -->
-    <main class="flex flex-col justify-center items-center  w-full">
+    <main class="flex flex-col justify-center items-center w-full">
         <p class="text-6xl text-center">新規登録</p>
-        <div class="grid justify-center ">
+        <div class="flex flex-col items-center w-full">
             <!-- Lineログインボタン -->
-            <a href="#" class="line-icon social-media">
+            <a href="#" class="social-media">
                 <div class="line">
-                    <button onclick="gotoLink(this)" class="login-button gsi-material-button"
+                    <button onclick="gotoLink(this)" class="login-button"
                         value="https://www.line.com/">
                         <div class="login-button-state"></div>
                         <div class="login-button-content-wrapper">
                             <div class="login-button-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#3ace01"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#3ace01"
                                     class="bi bi-line" viewBox="0 0 24 24">
                                     <!-- Lineのアイコン -->
                                     <g fill-rule="evenodd" clip-rule="evenodd">
@@ -128,16 +123,16 @@
             </a>
 
             <!-- または -->
-            <p class="text-3xl mt-7 text-center text-gray-400">-------------------または-------------------</p>
+            <p class="text-6xl mt-7 text-center text-gray-400">----------------or----------------</p>
 
             <!-- Googleログインボタン -->
             <a href="#" class="google-icon social-media">
                 <div class="google">
-                    <button class="login-button gsi-material-button" id="google-btn">
+                    <button class="login-button " id="google-btn">
                         <div class="login-button-state"></div>
                         <div class="login-button-content-wrapper">
                             <div class="login-button-icon">
-                                <svg width="24" height="24" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg"
+                                <svg width="60" height="60" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg"
                                     preserveAspectRatio="xMidYMid">
                                     <!-- Googleのアイコン -->
                                     <path
@@ -152,7 +147,6 @@
                                     <path
                                         d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
                                         fill="#EB4335" />
-
                                 </svg>
                             </div>
                             <span class="login-button-contents">Google でログイン</span>
