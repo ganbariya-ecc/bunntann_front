@@ -5,41 +5,42 @@
     <meta charset="UTF-8">
     <title>新規登録画面</title>
     <link rel="stylesheet" href="/frontend/src/css/setting_user/new_user.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Yusei+Magic&display=swap" rel="stylesheet">
     <style>
         body {
             height: 100vh;
             overflow: hidden;
+            background: rgba(246, 219, 186, 0.5);
+            font-family: "Kiwi Maru", serif;
         }
+
         /* ボタン */
         /* ボタンの箱の形 */
         .login-button {
             width: 100%;
-            height: 60px;
+            height: 80px;
             background-color: WHITE;
             margin: 10px 0;
             border: 1px solid #747775;
-            border-radius: 30px;
+            border-radius: 20px;
             box-sizing: border-box;
             color: #333;
             cursor: pointer;
-            font-family: 'Roboto', arial, sans-serif;
-            font-size: 14px;
             letter-spacing: 2px;
-            padding: 0px 20px;
+            padding: 0px 30px;
             position: relative;
             text-align: center;
             transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
             vertical-align: middle;
-            white-space: nowrap;
-            max-width: 400px;
         }
 
         /* アイコンのサイズ */
         .login-button .login-button-icon {
-            height: 20px;
+            height: 60px; /* アイコンのサイズを増加 */
             margin-right: 20px;
-            min-width: 20px;
-            width: 20px;
+            min-width: 60px;
+            width: 60px;
         }
 
         /* ボタン内のテキストの配置 */
@@ -49,15 +50,14 @@
             flex-direction: row;
             flex-wrap: nowrap;
             height: 100%;
-            justify-content: space-between;
             position: relative;
             width: 100%;
         }
 
         /* ボタン内のテキストのフォント */
         .login-button .login-button-contents {
+            font-size: 48px;
             flex-grow: 1;
-            font-family: 'Roboto', arial, sans-serif;
             font-weight: 500;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -88,58 +88,26 @@
     </style>
 </head>
 
-<body class="bg-orange-100  m-0 p-0 ">
+<body>
     <!-- title -->
-    <header class="pr-24 pl-24 pt-52">
-        <h1 class="text-8xl text-center mt-24 text-orange-600 font-bold">分担ちゃん</h1>
+    <header class="h-1/2">
+        <a class="absolute top-5 left-5 " href="./login_group.html"><img class="w-16 h-24"
+                src="/frontend/images/back.png" alt="戻る"></a>
+        <img class="w-full h-auto" src="/frontend/images/rogo.png" alt="ロゴ">
     </header>
     <!-- main -->
-    <main class="p-10 ">
-        <p class="text-6xl mt-36 mb-28 text-center">新規登録</p>
-        <div class="grid justify-center ">
-            <!-- Googleログインボタン -->
-            <a href="#" class="google-icon social-media">
-                <div class="google">
-                    <button class="login-button gsi-material-button" id="google-btn">
-                        <div class="login-button-state"></div>
-                        <div class="login-button-content-wrapper">
-                            <div class="login-button-icon">
-                                <svg width="24" height="24" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg"
-                                    preserveAspectRatio="xMidYMid">
-                                    <!-- Googleのアイコン -->
-                                    <path
-                                        d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
-                                        fill="#4285F4" />
-                                    <path
-                                        d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
-                                        fill="#34A853" />
-                                    <path
-                                        d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
-                                        fill="#FBBC05" />
-                                    <path
-                                        d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
-                                        fill="#EB4335" />
-
-                                </svg>
-                            </div>
-                            <span class="login-button-contents">Google でログイン</span>
-                        </div>
-                    </button>
-                </div>
-            </a>
-
-            <!-- または -->
-            <p class="text-3xl mt-7 text-center text-gray-400">-------------------または-------------------</p>
-
+    <main class="flex flex-col justify-center items-center w-full">
+        <p class="text-6xl text-center">新規登録</p>
+        <div class="flex flex-col items-center w-full">
             <!-- Lineログインボタン -->
-            <a href="#" class="line-icon social-media">
+            <a href="#" class="social-media">
                 <div class="line">
-                    <button onclick="gotoLink(this)" class="login-button gsi-material-button"
+                    <button onclick="gotoLink(this)" class="login-button"
                         value="https://www.line.com/">
                         <div class="login-button-state"></div>
                         <div class="login-button-content-wrapper">
                             <div class="login-button-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#3ace01"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#3ace01"
                                     class="bi bi-line" viewBox="0 0 24 24">
                                     <!-- Lineのアイコン -->
                                     <g fill-rule="evenodd" clip-rule="evenodd">
@@ -154,12 +122,42 @@
                 </div>
             </a>
 
+            <!-- または -->
+            <p class="text-6xl mt-7 text-center text-gray-400">----------------or----------------</p>
+
+            <!-- Googleログインボタン -->
+            <a href="#" class="google-icon social-media">
+                <div class="google">
+                    <button class="login-button " id="google-btn">
+                        <div class="login-button-state"></div>
+                        <div class="login-button-content-wrapper">
+                            <div class="login-button-icon">
+                                <svg width="60" height="60" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg"
+                                    preserveAspectRatio="xMidYMid">
+                                    <!-- Googleのアイコン -->
+                                    <path
+                                        d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
+                                        fill="#4285F4" />
+                                    <path
+                                        d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
+                                        fill="#34A853" />
+                                    <path
+                                        d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
+                                        fill="#FBBC05" />
+                                    <path
+                                        d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
+                                        fill="#EB4335" />
+                                </svg>
+                            </div>
+                            <span class="login-button-contents">Google でログイン</span>
+                        </div>
+                    </button>
+                </div>
+            </a>
+
             <p class="text-3xl mt-9 text-center">「登録」をクリックすると、<br>利用規約とプライバシーポリシーに同意したことになります。</p>
         </div>
     </main>
-    <footer class="p-1">
-        <img class="w-full h-auto " src="/frontend/images/Fuzzy Friends Plein Air Painting Trip.png" alt="下の画像">
-    </footer>
 </body>
 
 </html>
