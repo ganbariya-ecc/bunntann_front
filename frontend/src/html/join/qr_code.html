@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/join/qr_code.css">
     <title>Document</title>
 </head>
 <body>
+    <div id="wrapper" class="relative">
+        <!-- QR読み込みのためのカメラ映像を表示する -->
+        <video id="video" class="absolute top-0 left-0 hidden" autoplay muted playsinline></video>
+        <!-- ＜video＞要素をもとにカメラ映像を表示する -->
+        <canvas id="camera-canvas" class="absolute top-0 left-0 z-50"></canvas>
+        <!-- QRコードの周りに赤枠を表示するための -->
+        <canvas id="rect-canvas" class="absolute top-0 left-0 z-100"></canvas>
+    </div>
+    <div id="qr-msg"></div>
     <!-- HTMLにjsQR.jsを読み込みます。 -->
     <script src="../../js/jsQR.js"></script>
+    <script src="../../js/qr_code.js"></script>
 </body>
 </html>
