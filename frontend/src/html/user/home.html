@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <title>Title</title>
     <link rel="stylesheet" href="/frontend/src/css/user/home.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
@@ -146,12 +151,39 @@
             transform: translateX(0);
             /* 画面幅の30%にメニューを表示 */
         }
+
+        /* グレイレイヤーの仕様 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 8;
+            /* メニューの下に */
+            display: none;
+        }
+
+        /* グレイレイヤーを表示する */
+        .overlay.show {
+            display: block;
+        }
+
+        .bg-customerized-orange {
+            background-color: #F8E3CB;
+        }
+
+        .bg-customerized-pink {
+            background-color: #FFCCC0;
+        }
     </style>
 </head>
 
-<body class=" m-0 p-0 box-border">
+<body class=" m-0 p-0 box-border font-kiwi-maru">
+    <div class="overlay"></div>
     <!-- header要素 -->
-    <header class="h-40 bg-orange-100 flex items-center">
+    <header class=" h-40 bg-orange-100 flex items-center">
         <!-- ハンバーガーメニュー -->
         <button type="button" class="btn js-btn">
             <span class="btn-line"></span>
@@ -160,17 +192,22 @@
         <!-- メニューオーバーレイ -->
         <!-- TODO:表示メニューの調整 -->
         <nav>
-            <ul class="menu bg-orange-200">
-                <li class="menu-list "><a href="#" class="pt-24 pb-2 px-4  block ">ロゴ</a></li>
-                <li class="menu-list"><a href="#" class="py-2 px-4  block hover:text-white">ポイント</a></li>
-                <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">タスク管理</a></li>
-                <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a></li>
+            <ul class="menu bg-orange-100 text-center">
+                <li class="menu-list"><a href="#" class="text-9xl text-orange-500 pt-24 pb-2 px-4 mb-32 block font-yusei-magic">ぶんたん</a></li>
+                <li class="menu-list"><a href="#" class="bg-customerized-orange text-stone-600 text-6xl py-10 px-4 block hover:text-white">予定管理</a></li>
+                <li class="menu-list"><a href="#" class="bg-orange-50 text-stone-600 text-6xl py-10 px-4 block hover:text-white">ポイント</a></li>
+                <li class="menu-list"><a href="#" class="bg-customerized-orange text-stone-600 text-6xl py-10 px-4 block hover:text-white">タスク管理</a></li>
+                <li class="menu-list"><a href="#" class="bg-orange-50 text-stone-600 text-6xl py-10 px-4 block hover:text-white">グループ管理</a></li>
+                <li class="menu-list"><a href="#" class="bg-customerized-orange text-stone-600 text-6xl py-10 px-4 block hover:text-white">ご褒美管理</a></li>
+                <li class="menu-list"><a href="#" class="bg-customerized-orange text-stone-600 text-6xl py-10 px-4 mt-96 block hover:text-white">設定</a></li>
+                <li class="menu-list"><a href="#" class="bg-customerized-pink text-stone-600 text-6xl py-10 px-4 block hover:text-white">ログアウト</a></li>
             </ul>
         </nav>
 
         <!-- iconとalarmの画像配置 -->
         <div class="flex justify-center absolute right-3">
-            <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" />
+            <span id="noti icons"><i class="material-icons"
+                    style="font-size:87px;color:#707070;">notifications</i></span>
             <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
         </div>
     </header>
@@ -197,6 +234,7 @@
             $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
                 $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
                 $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
+                $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
             });
         });
     </script>
