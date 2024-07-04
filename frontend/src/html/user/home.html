@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <title>Title</title>
     <link rel="stylesheet" href="/frontend/src/css/user/home.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
@@ -149,30 +153,30 @@
     </style>
 </head>
 
-<body class=" m-0 p-0 box-border">
+<body class=" m-0 p-0 box-border font-kiwi-maru"">
     <!-- header要素 -->
-    <header class="h-40 bg-orange-100 flex items-center">
-        <!-- ハンバーガーメニュー -->
-        <button type="button" class="btn js-btn">
-            <span class="btn-line"></span>
-        </button>
+    <header class=" h-40 bg-orange-100 flex items-center">
+    <!-- ハンバーガーメニュー -->
+    <button type="button" class="btn js-btn">
+        <span class="btn-line"></span>
+    </button>
 
-        <!-- メニューオーバーレイ -->
-        <!-- TODO:表示メニューの調整 -->
-        <nav>
-            <ul class="menu bg-orange-200">
-                <li class="menu-list "><a href="#" class="pt-24 pb-2 px-4  block ">ロゴ</a></li>
-                <li class="menu-list"><a href="#" class="py-2 px-4  block hover:text-white">ポイント</a></li>
-                <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">タスク管理</a></li>
-                <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a></li>
-            </ul>
-        </nav>
+    <!-- メニューオーバーレイ -->
+    <!-- TODO:表示メニューの調整 -->
+    <nav>
+        <ul class="menu bg-orange-200">
+            <li class="menu-list "><a href="#" class="pt-24 pb-2 px-4  block ">ロゴ</a></li>
+            <li class="menu-list"><a href="#" class="py-2 px-4  block hover:text-white">ポイント</a></li>
+            <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">タスク管理</a></li>
+            <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a></li>
+        </ul>
+    </nav>
 
-        <!-- iconとalarmの画像配置 -->
-        <div class="flex justify-center absolute right-3">
-            <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" />
-            <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
-        </div>
+    <!-- iconとalarmの画像配置 -->
+    <div class="flex justify-center absolute right-3">
+        <span id="noti icons"><i class="material-icons" style="font-size:87px;color:#707070;">notifications</i></span>
+        <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
+    </div>
     </header>
 
     <!-- main要素 -->
