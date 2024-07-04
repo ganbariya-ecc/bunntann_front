@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'kiwi-maru': ['"Kiwi Maru"', ...defaultTheme.fontFamily.sans],
+        'yusei-magic': ['"Yusei Magic"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
