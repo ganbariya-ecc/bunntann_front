@@ -78,16 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
             const code = jsQR(imageData.data, contentWidth, contentHeight);
 
+            // 検出結果に合わせて処理を実施
             if (code) {
                 console.log("QRcodeが見つかりました", code);
                 drawRect(code.location);
-                qrMessage.textContent = `QRコード：${code.data}`;
+                document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
             } else {
-                console.log("QRcodeが見つかりません…");
+                console.log("QRcodeが見つかりません…", code);
                 rectCtx.clearRect(0, 0, contentWidth, contentHeight);
-                qrMessage.textContent = `QRコード: 見つかりません`;
+                document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
             }
-            setTimeout(checkImage, 500);
+            setTimeout(() => { checkImage() }, 500);
         }
     };
 
