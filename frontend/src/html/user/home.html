@@ -186,6 +186,13 @@
         .material-icons {
             font-size: 80px; 
         }
+
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 8px;
+            text-align: center;
+            font-size: 24px;
+        }
     </style>
 </head>
 
@@ -258,8 +265,23 @@
             </div>
         </div>
         <!-- カレンダー -->
-        <div>
-           
+        <div class="mt-32">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th>日</th>
+                        <th>月</th>
+                        <th>火</th>
+                        <th>水</th>
+                        <th>木</th>
+                        <th>金</th>
+                        <th>土</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- カレンダーの日付部分はJavaScriptで動的に生成する例を後述 -->
+                </tbody>
+            </table>
         </div>
     </main>
 
