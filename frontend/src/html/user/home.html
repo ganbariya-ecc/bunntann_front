@@ -1,3 +1,4 @@
+<input type="date" id="datePicker" onchange="updateCalendar()">
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -187,11 +188,21 @@
             font-size: 80px; 
         }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
         th, td {
             border: 1px solid #cccccc;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
-            font-size: 24px;
+            cursor: pointer;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td:hover {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
@@ -266,7 +277,7 @@
         </div>
         <!-- カレンダー -->
         <div class="mt-32">
-            <table class="w-full">
+            <table class="w-full border-collapse">
                 <thead>
                     <tr>
                         <th>日</th>
@@ -287,6 +298,8 @@
 
 
     <script>
+
+        // ハンバーガーメニューのjs
         $(function () {
             $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
                 $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
@@ -294,6 +307,46 @@
                 $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
             });
         });
+
+        // かレンダーのjs
+        document.addEventListener('DOMContentLoaded', function () {
+                const calendarBody = document.querySelector('tbody');
+                // 月の日付を動的に生成し、イベントリスナーを追加する
+                for (let day = 1; day <= 30; day++) {
+                    const cell = document.createElement('td');
+                    cell.innerText = day;
+                    cell.addEventListener('click', function () {
+                        const event = prompt('イベントを追加:');
+                        if (event) {
+                            cell.innerHTML += `<div>${event}</div>`;
+                        }
+                    });
+                    calendarBody.appendChild(cell);
+                }
+        });
+
+        // 今日の日付の背景色を変更
+        document.addEventListener('DOMContentLoaded', function () {
+                const today = new Date();
+                const calendarCells = document.querySelectorAll('td');
+                calendarCells.forEach(cell => {
+                    if (cell.innerText == today.getDate()) {
+                        cell.style.backgroundColor = '#ffcc00'; // 今日の日付に黄色の背景色を適用
+                    }
+                });
+            });
+
+            // 今の段階だと使用しないためコメントアウトにしています
+        //     // カレンダーを更新する関数
+        // function updateCalendar() {
+        //         const selectedDate = document.getElementById('datePicker').value;
+        //         const dateParts = selectedDate.split('-');
+        //         const year = dateParts[0];
+        //         const month = dateParts[1];
+        //         const day = dateParts[2];
+        //         // ここでカレンダーの表示を更新
+        //         alert(`選択された日付: ${year}年${month}月${day}日`);
+        //     }
     </script>
 </body>
 
