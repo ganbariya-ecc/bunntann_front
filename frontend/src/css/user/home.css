@@ -843,6 +843,10 @@ video {
   display: none;
 }
 
+.aspect-auto {
+  aspect-ratio: auto;
+}
+
 .h-1\/2 {
   height: 50%;
 }
