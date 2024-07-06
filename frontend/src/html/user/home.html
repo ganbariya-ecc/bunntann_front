@@ -1,4 +1,3 @@
-<input type="date" id="datePicker" onchange="updateCalendar()">
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -187,23 +186,6 @@
         .material-icons {
             font-size: 80px; 
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #cccccc;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        td:hover {
-            background-color: #f9f9f9;
-        }
     </style>
 </head>
 
@@ -276,11 +258,7 @@
             </div>
         </div>
         <!-- カレンダー -->
-        <div class="mt-32">
-            <iframe class="aspect-auto w-full"
-                src="https://calendar.google.com/calendar/embed?src=446a34cdb756004b1df87ce80e628cf406e81aa5ddfba092b2576de5e036e82c%40group.calendar.google.com&ctz=Asia%2FTokyo"
-                style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
+        <div id="calendar" class="mt-32"></div>
     </main>
 
 
@@ -294,6 +272,44 @@
                 $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
             });
         });
+
+        // カレンダー
+        const calendarEl = document.getElementById('calendar');
+            const date = new Date();
+            const currentYear = date.getFullYear();
+            const currentMonth = date.getMonth();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // カレンダーのHTML構造を生成
+            let calendarHtml = '<table><thead><tr>';
+            for (let i = 0; i < 7; i++) {
+                calendarHtml += `<th>${['日', '月', '火', '水', '木', '金', '土'][i]}</th>`;
+            }
+            calendarHtml += '</tr></thead><tbody><tr>';
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayOfWeek = new Date(currentYear, currentMonth, i).getDay();
+                if (i === 1) {
+                    calendarHtml += '<tr>';
+                    for (let j = 0; j < dayOfWeek; j++) {
+                        calendarHtml += '<td></td>';
+                    }
+                }
+                calendarHtml += `<td>${i}</td>`;
+                if (dayOfWeek === 6) {
+                    calendarHtml += '</tr>';
+                    if (i < daysInMonth) {
+                        calendarHtml += '<tr>';
+                    }
+                } else if (i === daysInMonth) {
+                    for (let j = dayOfWeek + 1; j <= 6; j++) {
+                        calendarHtml += '<td></td>';
+                    }
+                    calendarHtml += '</tr>';
+                }
+            }
+            calendarHtml += '</tbody></table>';
+            calendarEl.innerHTML = calendarHtml;
 
         
     </script>
