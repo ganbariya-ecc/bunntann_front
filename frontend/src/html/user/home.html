@@ -187,6 +187,60 @@
             font-size: 80px; 
         }
         
+        #calendar {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width: 80vmin;  /* ビューポートの最小寸法の80% */
+            height: 80vmin; /* ビューポートの最小寸法の80% */
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+            border-collapse: separate;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            width: calc(100% / 7); /* 各セルの幅を均等に設定 */
+            height: calc(100% / 7); /* 各セルの高さを均等に設定 */
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+        }
+
+        td {
+            background-color: #fff;
+            border:5px solid rgb(255 247 237);
+        }
+
+        .current-day {
+            background-color: #FFD3C4;
+        }
+
+        .cal-center {
+            flex-direction: column;
+            border-radius: 15px;
+            border: 5px solid #fff;
+            background-color: rgb(255 247 237);
+            margin: 15% 40px;
+            padding: 5% 5% 10% 5%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cal-navi {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding:0 10px
+        }
 
     </style>
 </head>
@@ -251,13 +305,14 @@
     <!-- main要素 -->
     <main>
         <!-- 今日の予定表示 -->
-        <div>
-            <h2 class="text-5xl mt-6 ml-14 text-teal-500">〇月〇日</h2>
+        <div class="mt-24">
+            <h2 class="text-6xl mt-6 ml-14 text-teal-500">〇月〇日</h2>
             <div
-                class="flex-none border-orange-200 bg-orange-50 border-4 mt-5 w-4/5 mr-auto ml-auto h-28 items-center rounded-3xl">
-                <p class="text-3xl m-1 text-teal-500">Tasks today</p>
-                <p class="text-4xl ml-4">残り〇個</p>
+                class="flex-none border-orange-200 bg-orange-50 border-4 mt-16 w-4/5 mr-auto ml-auto h-36 items-center rounded-3xl">
+                <p class="text-4xl m-1 text-teal-500">Tasks today</p>
+                <p class="text-5xl ml-4 mt-5">残り〇個</p>
             </div>
+        </div>
         </div>
         <!-- カレンダー -->
         <div class="cal-center">
