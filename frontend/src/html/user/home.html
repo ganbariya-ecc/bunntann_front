@@ -186,8 +186,8 @@
         .material-icons {
             font-size: 80px; 
         }
-
         
+
     </style>
 </head>
 
@@ -282,12 +282,18 @@
             const currentMonth = date.getMonth();
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
+            // 当日の日付を取得とクラスを付けて
+            const currentDay = date.getDate();
+            const getDayClass = (day) => {
+                if (day === currentDay) return 'current-day';
+            };
+
             // カレンダーのHTML構造を生成
             let calendarHtml = '<table><thead><tr>';
             for (let i = 0; i < 7; i++) {
                 calendarHtml += `<th>${['日', '月', '火', '水', '木', '金', '土'][i]}</th>`;
             }
-            calendarHtml += '</tr></thead><tbody><tr>';
+            calendarHtml += '</tr></thead><tbody>';     // 余計な<tr>を削除した
 
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayOfWeek = new Date(currentYear, currentMonth, i).getDay();
@@ -297,7 +303,10 @@
                         calendarHtml += '<td></td>';
                     }
                 }
-                calendarHtml += `<td>${i}</td>`;
+                // 追加部分
+                const dayClass = getDayClass(i);
+
+                calendarHtml += `<td class="${dayClass}">${i}</td>`;    // 当日のクラスを追加部分
                 if (dayOfWeek === 6) {
                     calendarHtml += '</tr>';
                     if (i < daysInMonth) {
