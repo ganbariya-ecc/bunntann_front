@@ -2,8 +2,9 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/admin/task_create.css">
+    <!-- Google fonts Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <title>タスク作成画面</title>
     <style>
         body {
@@ -18,8 +19,8 @@
         }
         h2{
                 font-size: 35px;
-                margin-top: 1rem;
-                margin-bottom: 1rem;
+                margin-top: 2rem;
+                margin-bottom: 1.5rem;
         }
         #border_color{
                 font-size: 60px;
@@ -39,14 +40,42 @@
         }
     </style>
 </head>
-<body>
-<header>
-    <a class="absolute top-5 left-5 " href="#"><img class="w-8 h-16" src="/frontend/images/back.png"alt="戻る"></a>
-    <h1 class="text-4xl flex justify-center ">タスクを新規作成</h1>
-</header>
-<main>
-    <!-- TODO 作成内容 -->
-</main>
-    
-</body>
+    <body>
+        <header>
+            <!-- 戻るボタン -->
+            <div class="h-32 pt-16 pl-6">
+                <a class="" href="#"><img class="w-10 h-14" src="/frontend/images/back.png" alt="戻る"></a>
+            </div>
+            <h1 class="text-center text-7xl mt-28">タスクを新規作成</h1>
+        </header>
+        <main>
+            <!-- タスクの新規作成フォーム -->
+            <form action="#" method="post" id="task_create_form" class="h-full w-10/12 mx-auto mt-24 text-center">
+                    <h2>タイトル</h2>
+                    <div class="relative">
+                        <span id="border_color" class="material-icons absolute top-7">border_color</span>
+                        <input type="text" name="title" class="w-11/12 h-32 rounded-3xl bg-orange-50 text-center text-5xl"/>
+                    </div>
+                    <h2>締め切り</h2>
+                    <input type="datetime-local" name="deadline" class="w-11/12 h-32 rounded-3xl bg-orange-50 text-5xl text-center"/>
+                    <h2>振り分け</h2>
+                    <div id="members-container" class="flex border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
+                        <!-- ユーザーの表示 -->
+                    </div>
+                    <h2>画像</h2>
+                    <label>
+                        <div id="file_upload" class="border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
+                            <input type="file" name="task-image" class="hidden"/>
+                        </div>
+                    </label>
+                    <h2>備考</h2>
+                    <textarea name="message" class="border-4 rounded-3xl w-11/12 h-72 bg-orange-50 border-orange-50 text-center text-6xl"></textarea>
+                <!-- ボタン -->
+                <div class="text-center h-full mt-16">
+                    <button class="confirm_btn font-bold">確定</button>
+                </div>
+            </form>
+        </main>
+        
+    </body>
 </html>
