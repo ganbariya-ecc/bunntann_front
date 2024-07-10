@@ -51,7 +51,7 @@
         </header>
         <main>
             <!-- タスクの新規作成フォーム -->
-            <form action="#" method="post" id="task_create_form" class="h-full w-10/12 mx-auto mt-24 text-center">
+            <form action="#" method="post" id="task_create_form" class="h-full w-10/12 mx-auto mt-24 text-center" enctype="multipart/form-data">
                     <h2>タイトル</h2>
                     <div class="relative">
                         <span id="border_color" class="material-icons absolute top-8 left-16">border_color</span>
@@ -69,8 +69,9 @@
                     </div>
                     <h2>画像</h2>
                     <label for="task_image_upload">
-                        <div id="file_upload" class="border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
-                            <input type="file" name="task-image" id="task_image_upload" class="hidden"/>
+                        <div id="file_upload" class="flex border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
+                            <input type="file" name="task-image" id="task_image_upload" class="hidden"onchange="previewImage(event)"/>
+                            <span class="material-icons m-auto">add</span>
                         </div>
                     </label>
                     <h2>備考</h2>
@@ -109,21 +110,48 @@
                 const user_labels = document.querySelectorAll('.js_user_select');
                 user_labels.forEach(user_label => {
                     user_label.addEventListener('click', function () {
-                        // すべてのアイコンのボーダーをリセット
+                        // アイコンのボーダーをリセット
                         user_labels.forEach(label => {
                             const img = label.querySelector('img');
                             if (img) {
                                 img.style.border = 'none';
                             }
                         });
-                        // クリックされたアイコンにボーダーを設定
+                        // 選択されたアイコンをボーダーで囲う処理
                         const selectedImg = user_label.querySelector('img');
                         if (selectedImg) {
-                            selectedImg.style.border = '4px solid #4AB4A1';
+                            selectedImg.style.border = '7px solid #4AB4A1';
                         }
                     });
                 });
             });
+            // 画像プレビューとアップロード
+            function previewImage(event) {
+                const file = event.target.files[0];
+                const fileUpload = document.getElementById('file_upload');
+                
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // プレビュー画像を削除
+                        const existingImg = fileUpload.querySelector('img');
+                        if (existingImg) {
+                            existingImg.remove();
+                        }
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('w-full', 'h-full', 'object-contain');
+                        // addアイコンを削除
+                        const addIcon = fileUpload.querySelector('.material-icons');
+                        if (addIcon) {
+                            addIcon.remove();
+                        }
+                        // 画像を追加
+                        fileUpload.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
         </script>
     </body>
 </html>
