@@ -8,23 +8,24 @@
     <title>タスク作成画面</title>
     <style>
         body {
-                height: 100vh;
-                overflow: hidden;
-                background: rgba(246, 219, 186, 0.5);
-            }
+            height: 100vh;
+            overflow: hidden;
+            background: rgba(246, 219, 186, 0.5);
+        }
         h1,h2{
-                line-height: 2.25rem;
-                letter-spacing: .2em;
-                color: #4AB4A1;
+            line-height: 2.25rem;
+            letter-spacing: .2em;
+            color: #4AB4A1;
         }
         h2{
-                font-size: 35px;
-                margin-top: 2rem;
-                margin-bottom: 1.5rem;
+            font-size: 35px;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
         }
-        #border_color{
-                font-size: 60px;
-            }
+        .material-icons{
+            color:#666666;
+            font-size: 60px;
+        }
         .confirm_btn{
             background-color: #BCE6FF; /* ボタンの背景色 */
             border-bottom: 4px solid #FFA07A; /* 下線の色 */
@@ -53,29 +54,76 @@
             <form action="#" method="post" id="task_create_form" class="h-full w-10/12 mx-auto mt-24 text-center">
                     <h2>タイトル</h2>
                     <div class="relative">
-                        <span id="border_color" class="material-icons absolute top-7">border_color</span>
+                        <span id="border_color" class="material-icons absolute top-8 left-16">border_color</span>
                         <input type="text" name="title" class="w-11/12 h-32 rounded-3xl bg-orange-50 text-center text-5xl"/>
                     </div>
                     <h2>締め切り</h2>
-                    <input type="datetime-local" name="deadline" class="w-11/12 h-32 rounded-3xl bg-orange-50 text-5xl text-center"/>
+                    <div class="relative flex w-11/12 h-32 mx-auto">
+                        <span id="alarm_on" class="material-icons absolute top-8 left-8">alarm_on</span>
+                        <!-- <div id="datetime-display" class="datetime-display m-auto">〇〇月〇〇日〇〇時〇〇分</div> -->
+                        <input type="datetime-local" name="deadline" id="deadline" class="w-full h-full text-5xl rounded-3xl bg-orange-50 text-center"/>
+                    </div>
                     <h2>振り分け</h2>
-                    <div id="members-container" class="flex border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
+                    <div id="members-container" class="flex flex-row overflow-x-scroll border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
                         <!-- ユーザーの表示 -->
                     </div>
                     <h2>画像</h2>
-                    <label>
+                    <label for="task_image_upload">
                         <div id="file_upload" class="border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
-                            <input type="file" name="task-image" class="hidden"/>
+                            <input type="file" name="task-image" id="task_image_upload" class="hidden"/>
                         </div>
                     </label>
                     <h2>備考</h2>
-                    <textarea name="message" class="border-4 rounded-3xl w-11/12 h-72 bg-orange-50 border-orange-50 text-center text-6xl"></textarea>
+                    <div class="textarea_container relative mx-auto w-11/12 h-72">
+                        <span class="material-icons absolute top-8 left-8">sticky_note_2</span>
+                        <textarea name="message" class="border-4 rounded-3xl h-full w-full bg-orange-50 border-orange-50 text-center text-6xl"></textarea>
+                    </div>
                 <!-- ボタン -->
                 <div class="text-center h-full mt-16">
                     <button class="confirm_btn font-bold">確定</button>
                 </div>
             </form>
         </main>
-        
+        <script>
+            // ユーザーのサンプルデータ
+            users = [
+                {id:1, name: 'お兄さん', icon: '/frontend/images/olderBrother_image.png'},
+                {id:2, name: 'おとうと', icon: '/frontend/images/youngerBrother_image.png'},
+                {id:3, name: 'いもうと', icon: '/frontend/images/youngerSister_image.png'},
+                {id:4, name: 'お父さん', icon: '/frontend/images/father_image.png'}
+            ]
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // ユーザーを表示
+                users.forEach(user =>  {
+                    const user_label = document.createElement('label');
+                    user_label.className = 'flex w-1/4 h-full flex-shrink-0 js_user_select';
+                    user_label.innerHTML = `
+                        <input type="radio" name="members" value="${user.id}" class="hidden"/>
+                        <img src="${user.icon}" class="w-36 h-36 rounded-full m-auto">
+                    `;
+                    document.querySelector('#members-container').appendChild(user_label);
+                })
+
+                // ユーザーの選択状態の表示
+                const user_labels = document.querySelectorAll('.js_user_select');
+                user_labels.forEach(user_label => {
+                    user_label.addEventListener('click', function () {
+                        // すべてのアイコンのボーダーをリセット
+                        user_labels.forEach(label => {
+                            const img = label.querySelector('img');
+                            if (img) {
+                                img.style.border = 'none';
+                            }
+                        });
+                        // クリックされたアイコンにボーダーを設定
+                        const selectedImg = user_label.querySelector('img');
+                        if (selectedImg) {
+                            selectedImg.style.border = '4px solid #4AB4A1';
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
