@@ -5,6 +5,8 @@
         <title>タスク受注画面</title>
         <link rel="stylesheet" href="../../../css/user/tasks/task_help.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
         <style>
             body {
                 height: 100vh;
@@ -18,22 +20,23 @@
                 }
             }
             button {
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                vertical-align: middle;
-                border: 0;
-                background: transparent;
-                border-radius: 0;
-                text-align: inherit;
-                display: inline-block;
-                justify-content: center;
-                align-items: center;
-            }
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            vertical-align: middle;
+            border: 0;
+            background: transparent;
+            border-radius: 0;
+            text-align: inherit;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+        }
 
             button:hover {
                 cursor: pointer;
             }
+
             /* ハンバーガーメニューのスタイル */
             .btn {
                 /* ボタンの配置位置 */
@@ -48,6 +51,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+            }
+
+            .btn .material-icons {
+                font-size: 36px;
+                /* アイコンのサイズを変更 */
             }
 
             /* 真ん中のバーガー線 */
@@ -114,6 +122,7 @@
 
             /* メニューのスタイル */
             .menu {
+                background: rgb(255, 242, 225);
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -147,6 +156,33 @@
                 transform: translateX(0);
                 /* 画面幅の30%にメニューを表示 */
             }
+
+            /* グレイレイヤーの仕様 */
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 8;
+                /* メニューの下に */
+                display: none;
+            }
+
+            /* グレイレイヤーを表示する */
+            .overlay.show {
+                display: block;
+            }
+
+            .bg-customerized-orange {
+                background-color: #F8E3CB;
+            }
+
+            .bg-customerized-pink {
+                background-color: #FFCCC0;
+            }
+
             h1 {
                 color: #4AB4A1;
             }
@@ -186,28 +222,59 @@
             
         </style>
     </head>
-    <body class="bg-orange-100">
+    <body class="font-kiwi-maru">
+        <!-- グレイレイヤー -->
+        <div class="overlay">
+        </div>
+
         <!-- header要素 -->
-        <header class="h-40 bg-orange-100 flex items-center">
+        <header class="h-40  flex items-center">
             <!-- ハンバーガーメニュー -->
             <button type="button" class="btn js-btn">
                 <span class="btn-line"></span>
             </button>
-    
+
             <!-- メニューオーバーレイ -->
-            <!-- TODO:表示メニューの調整 -->
             <nav>
-                <ul class="menu bg-orange-200">
-                    <li class="menu-list "><a href="#" class="pt-24 pb-2 px-4  block ">ロゴ</a></li>
-                    <li class="menu-list"><a href="#" class="py-2 px-4  block hover:text-white">ポイント</a></li>
-                    <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">タスク管理</a></li>
-                    <li class="menu-list"><a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a></li>
+                <ul class="menu text-left">
+                    <li class="menu-list"><a href="#"
+                            class="text-9xl text-teal-500 pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">calendar_month</i>
+                            予定管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">new_releases</i>
+                            ポイント</a></li>
+                    <li class="menu-list"><a href="./tasks/task_list.html"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">task</i>
+                            タスク管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">group</i>
+                            グループ管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">local_activity</i>
+                            ご褒美管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 mt-96 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">settings</i>
+                            設定</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">logout</i>
+                            ログアウト</a></li>
                 </ul>
             </nav>
-    
+
             <!-- iconとalarmの画像配置 -->
             <div class="flex justify-center absolute right-3">
-                <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" />
+                <!-- <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" /> -->
+                <!-- alarm icon 変更しました -->
+                <span id="noti icons"><i class="material-icons text-teal-500  py-0 px-2">notifications</i></span>
                 <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
             </div>
         </header>
