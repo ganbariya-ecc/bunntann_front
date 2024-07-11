@@ -9,6 +9,7 @@
             body {
                 height: 100vh;
                 overflow: hidden;
+                background: rgba(246, 219, 186, 0.5);
                 header {
                     height: 20%;
                 }
@@ -146,6 +147,9 @@
                 transform: translateX(0);
                 /* 画面幅の30%にメニューを表示 */
             }
+            h1 {
+                color: #4AB4A1;
+            }
             .material-icons {
                 font-size: 90px;
             }
@@ -211,10 +215,10 @@
         <main class="flex flex-col items-center">
             <!-- タスクタイトル表示 -->
             <div class="flex justify-center items-end mt-14 pb-4">
-                <h1 class="text-8xl text-orange-500 font-bold flex justify-center items-end">タスクのタイトル</h1>
+                <h1 class="text-8xl font-bold flex justify-center items-end">タスクのタイトル</h1>
             </div>
             <!-- 現在のステータスを表示 -->
-            <div class="flex border-orange-200 bg-orange-200 border-4 mt-16 w-4/5 h-56 items-center rounded-3xl">
+            <div class="flex border-orange-50 bg-orange-50 border-4 mt-16 w-4/5 h-56 items-center rounded-3xl">
                 <span class="material-icons text-orange-500 ml-12">notifications</span>
                 <span class="ml-6" id="status-message">ステータスメッセージの表示</span>
             </div>
