@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>ユーザー選択画面</title>
     <link rel="stylesheet" href="/frontend/src/css/user/user_select.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     <style>
         body {
                 overflow: hidden;
                 background: rgba(246, 219, 186, 0.5);
-            }
-
+        }
+        h1 {
+            color: #4AB4A1;
+        }
         #login_dialog[open]{
             border: none;
             border-radius: 1.5rem;
@@ -31,10 +34,10 @@
             }
     </style>
 </head>
-<body>
+<body class="font-kiwi-maru">
     <main class="h-full w-full">
         <a class="absolute top-10 left-5" href="#"><img class="w-10 h-14" src="/frontend/images/back.png" alt="戻る"></a>
-        <h1 class="mt-96 text-center text-orange-500 text-5xl">アカウントを選んでください</h1>
+        <h1 class="mt-96 text-center text-5xl">アカウントを選んでください</h1>
         <div id="user_view_container" class="flex mt-20 mx-auto w-9/12 flex-wrap">
 
         </div>
