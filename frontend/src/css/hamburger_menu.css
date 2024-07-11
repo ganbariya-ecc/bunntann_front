@@ -1,0 +1,163 @@
+button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            vertical-align: middle;
+            border: 0;
+            background: transparent;
+            border-radius: 0;
+            text-align: inherit;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        /* ハンバーガーメニューのスタイル */
+        .btn {
+            /* ボタンの配置位置 */
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            /* ボタンの大きさ */
+            width: 72px;
+            height: 64px;
+            /* 最前面に */
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn .material-icons {
+            font-size: 36px;
+            /* アイコンのサイズを変更 */
+        }
+
+        /* 真ん中のバーガー線 */
+        .btn-line {
+            /* 線の長さと高さ */
+            width: 100%;
+            height: 4px;
+            /* バーガー線の色 */
+            background-color: #333;
+            /* バーガー線の位置基準として設定 */
+            position: relative;
+            transition: .2s;
+        }
+
+        /* バーガー線の位置 */
+        .btn-line::before,
+        .btn-line::after {
+            content: "";
+            /* 基準線と同じ大きさと色 */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            transition: .2s;
+        }
+
+        .btn-line::before {
+            /* 上の線の位置 */
+            transform: translateY(-16px);
+        }
+
+        .btn-line::after {
+            /* 下の線の位置 */
+            transform: translateY(16px);
+        }
+
+        /* メニューが開いているとき */
+        .btn.open {
+            transform: rotate(180deg);
+        }
+
+        .btn-line.open {
+            /* 真ん中の線を透明に */
+            background-color: transparent;
+        }
+
+        .btn-line.open::before,
+        .btn-line.open::after {
+            content: "";
+            /* 上下の線の色を変える */
+            background-color: #333;
+            transition: .2s;
+        }
+
+        .btn-line.open::before {
+            /* 上の線を傾ける */
+            transform: rotate(135deg);
+        }
+
+        .btn-line.open::after {
+            /* 上の線を傾ける */
+            transform: rotate(-135deg);
+        }
+
+        /* メニューのスタイル */
+        .menu {
+            background: rgb(255, 242, 225);
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 70%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #efefef;
+            transition: .3s;
+            z-index: 9;
+            padding: 10px;
+            /* メニューが開いたときに他のコンテンツを右にずらす */
+            transform: translateX(-100%);
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-list:hover {
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.5);
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        /* メニューを開いたとき */
+        .menu.open {
+            transform: translateX(0);
+            /* 画面幅の30%にメニューを表示 */
+        }
+
+        /* グレイレイヤーの仕様 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 8;
+            /* メニューの下に */
+            display: none;
+        }
+
+        /* グレイレイヤーを表示する */
+        .overlay.show {
+            display: block;
+        }
+
+        .bg-customerized-orange {
+            background-color: #F8E3CB;
+        }
+
+        .bg-customerized-pink {
+            background-color: #FFCCC0;
+        }
