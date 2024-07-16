@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>ユーザー選択画面</title>
     <link rel="stylesheet" href="/frontend/src/css/user/user_select.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     <style>
         body {
                 overflow: hidden;
                 background: rgba(246, 219, 186, 0.5);
-            }
-
+        }
+        h1, dialog #text_password{
+            color: #4AB4A1;
+        }
         #login_dialog[open]{
             border: none;
             border-radius: 1.5rem;
@@ -20,7 +23,7 @@
             background: rgba(134, 132, 131, 0.5);
         }
         .login_btn{
-                background-color: #FFCCC0; /* ボタンの背景色 */
+                background-color: #BCE6FF; /* ボタンの背景色 */
                 border-bottom: 4px solid #FFA07A; /* 下線の色 */
                 box-shadow: 0.1em 0.1em 3px rgba(0, 0, 0, 0.5); /* 影の設定 */
                 width: 200px; 
@@ -31,10 +34,10 @@
             }
     </style>
 </head>
-<body>
+<body class="font-kiwi-maru">
     <main class="h-full w-full">
         <a class="absolute top-10 left-5" href="#"><img class="w-10 h-14" src="/frontend/images/back.png" alt="戻る"></a>
-        <h1 class="mt-96 text-center text-orange-500 text-5xl">アカウントを選んでください</h1>
+        <h1 class="mt-96 text-center text-5xl">アカウントを選んでください</h1>
         <div id="user_view_container" class="flex mt-20 mx-auto w-9/12 flex-wrap">
 
         </div>
@@ -42,7 +45,7 @@
     <dialog id="login_dialog" class="w-10/12">
         <div id="login_dialog_container">
             <img id="user_icon" src="" class="w-36 h-36 rounded-full mx-auto mt-8"/>
-            <p class="text-orange-500 text-center text-2xl mt-10">パスワード</p>
+            <p id="text_password" class="text-center text-2xl mt-10">パスワード</p>
             <form action="#" method="post" class="flex flex-col items-center">
                 <input type="password" id="password" class="rounded-3xl w-10/12 h-20 items-center text-center text-7xl"/>
                 <button id="login_btn" class="login_btn mt-8">ログイン</button>
@@ -68,7 +71,7 @@
             user_view.className = 'w-6/12 h-96';
             user_view.innerHTML = `
                 <img src="${user.icon}" class="w-56 h-56 rounded-full mx-auto">
-                <p class="text-center text-3xl font-bold mt-8">${user.name}</p>
+                <p class="user_name text-center text-3xl font-bold mt-8">${user.name}</p>
             `;
             // ユーザーアイコンをクリックしたらログインダイアログを開く
             user_view.addEventListener('click', () => {

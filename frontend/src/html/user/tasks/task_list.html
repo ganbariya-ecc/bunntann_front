@@ -3,11 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <title>タスク一覧画面</title>
+        <link rel="stylesheet" href="../../../css/hamburger_menu.css">
         <link rel="stylesheet" href="../../../css/user/tasks/task_list.css">
         <!-- Google font Icon -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <style>
-            
+            body {
+                height: 100vh;
+                overflow: hidden;
+                background: rgba(246, 219, 186, 0.5);
+                header {
+                    height: 20%;
+                }
+                main{
+                    height: 80%;
+                }
+                /* footer{
+                    height: 30%;
+                } */
+            }
+            h1 {
+                color: #4AB4A1;
+            }
             #add_circle {
             font-size: 60px;
             color: white;
@@ -44,27 +63,67 @@
             }
         </style>
     </head>
-    <body class="bg-orange-50">
-        <!-- header要素 -->
-        <header class="h-40 bg-orange-50 flex items-center">
-            <!-- ハンバーガーメニュー -->
-            <div class=" w-32 h-32 absolute left-5">
-                    <span class="bg-black h-2 w-24 absolute top-8 left-3.5"></span>
-                    <span class="bg-black h-2 w-24 absolute top-14 left-3.5"></span>
-                    <span class="bg-black h-2 w-24 absolute top-20 left-3.5"></span>
-            </div>
+    <body class="box-border font-kiwi-maru">
+        <!-- グレイレイヤー -->
+        <div class="overlay">
+        </div>
 
-            <!-- iconとalarmの画像配置-->
-            <div class="flex  justify-center absolute right-3">
-                <img class="w-24 h-24 bg-white rounded-full  mr-3 " src="/frontend/images/alarm.png" alt="alarm">
-                <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon">
+        <!-- header要素 -->
+        <header class="h-40  flex items-center">
+            <!-- ハンバーガーメニュー -->
+            <button type="button" class="btn js-btn">
+                <span class="btn-line"></span>
+            </button>
+
+            <!-- メニューオーバーレイ -->
+            <nav>
+                <ul class="menu text-left">
+                    <li class="menu-list"><a href="#"
+                            class="text-9xl text-teal-500 pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">calendar_month</i>
+                            予定管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">new_releases</i>
+                            ポイント</a></li>
+                    <li class="menu-list"><a href="./tasks/task_list.html"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">task</i>
+                            タスク管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">group</i>
+                            グループ管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">local_activity</i>
+                            ご褒美管理</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 mt-96 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">settings</i>
+                            設定</a></li>
+                    <li class="menu-list"><a href="#"
+                            class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                            <i class="material-icons text-teal-500 ">logout</i>
+                            ログアウト</a></li>
+                </ul>
+            </nav>
+
+            <!-- iconとalarmの画像配置 -->
+            <div class="flex justify-center absolute right-3">
+                <!-- <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" /> -->
+                <!-- alarm icon 変更しました -->
+                <span id="noti icons"><i class="material-icons text-teal-500  py-0 px-2">notifications</i></span>
+                <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
             </div>
         </header>
         <!-- main要素 -->
         <main>
             <!--　見出し　-->
             <div class="flex justify-between mt-6">
-                <h2 class="text-6xl mt-6 ml-14 text-orange-400">お手伝いリスト</h2>
+                <h1 class="text-6xl mt-6 ml-14">お手伝いリスト</h1>
                 <!-- add circle -->
                 <span id="add_circle" class="material-icons mt-6 mb-4 mr-20">add_circle</span>
             </div>
@@ -76,7 +135,7 @@
             </div>
             <!--　見出し　-->
             <div class="flex justify-between mt-9">
-                <h2 class="text-6xl mt-6 ml-14 text-orange-400">もっと手伝う・・・</h2>
+                <h1 class="text-6xl mt-6 ml-14">もっと手伝う・・・</h1>
                 <!-- add circle -->
                 <span id="add_circle" class="material-icons mt-6 mb-4 mr-20">add_circle</span>
             </div>
@@ -88,6 +147,14 @@
         </main>
         <!--script要素 -->
         <script>
+            // ハンバーガーメニューのjs
+        $(function () {
+            $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
+                $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
+                $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
+                $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
+            });
+        });
             // サンプルデータ
             const tasks = [
             { name: 'ゴミ', completed: true },
