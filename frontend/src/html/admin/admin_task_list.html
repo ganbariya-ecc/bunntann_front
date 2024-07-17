@@ -4,139 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <title>管理者タスクリスト</title>
+    <link rel="stylesheet" href="../../css/hamburger_menu.css" />
     <link rel="stylesheet" href="../../css/admin/admin_task_list.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <!-- Google fonts Icon -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
     <style>
         body {
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        header {
-            height: 20%;
-        }
-
-        main {
-            height: 80%;
-        }
-
-        /* footer {
-      height: 30%;
-    } */
-        button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            vertical-align: middle;
-            border: 0;
-            background: transparent;
-            border-radius: 0;
-            text-align: inherit;
-            display: inline-block;
-            justify-content: center;
-            align-items: center;
-        }
-
-        button:hover {
-            cursor: pointer;
-        }
-
-        /* ハンバーガーメニューのスタイル */
-        .btn {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            width: 72px;
-            height: 64px;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn-line {
-            width: 100%;
-            height: 4px;
-            background-color: #333;
-            position: relative;
-            transition: 0.2s;
-        }
-
-        .btn-line::before,
-        .btn-line::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            transition: 0.2s;
-        }
-
-        .btn-line::before {
-            transform: translateY(-16px);
-        }
-
-        .btn-line::after {
-            transform: translateY(16px);
-        }
-
-        .btn.open {
-            transform: rotate(180deg);
-        }
-
-        .btn-line.open {
-            background-color: transparent;
-        }
-
-        .btn-line.open::before,
-        .btn-line.open::after {
-            content: "";
-            background-color: #333;
-            transition: 0.2s;
-        }
-
-        .btn-line.open::before {
-            transform: rotate(135deg);
-        }
-
-        .btn-line.open::after {
-            transform: rotate(-135deg);
-        }
-
-        /* メニューのスタイル */
-        .menu {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 70%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: #efefef;
-            transition: 0.3s;
-            z-index: 9;
-            padding: 10px;
-            transform: translateX(-100%);
-        }
-
-        .menu-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu-list:hover {
-            color: #333;
-            background-color: rgba(255, 255, 255, 0.5);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
+                height: 100vh;
+                overflow: hidden;
+                background: rgba(246, 219, 186, 0.5);
+                header {
+                    height: 20%;
+                }
+                main{
+                    height: 80%;
+                }
+            }
         h1 {
             letter-spacing: 0.2em;
+            color: #4AB4A1;
         }
 
         #add_circle {
@@ -207,33 +97,59 @@
     </style>
 </head>
 
-<body class="bg-orange-100">
-    <!-- header要素 -->
-    <header class="h-40 bg-orange-100 flex items-center">
+<body class="box-border font-kiwi-maru">
+        <!-- グレイレイヤー -->
+        <div class="overlay">
+        </div>
+    
+    <header class="h-40  flex items-center">
         <!-- ハンバーガーメニュー -->
         <button type="button" class="btn js-btn">
             <span class="btn-line"></span>
         </button>
+
         <!-- メニューオーバーレイ -->
         <nav>
-            <ul class="menu bg-orange-200">
-                <li class="menu-list">
-                    <a href="#" class="pt-24 pb-2 px-4 block">ロゴ</a>
-                </li>
-                <li class="menu-list">
-                    <a href="#" class="py-2 px-4 block hover:text-white">ポイント</a>
-                </li>
-                <li class="menu-list">
-                    <a href="#" class="py-2 px-4 block hover:text-white">タスク管理</a>
-                </li>
-                <li class="menu-list">
-                    <a href="#" class="py-2 px-4 block hover:text-white">グループ管理</a>
-                </li>
+            <ul class="menu text-left lex-1 flex flex-col">
+                <li class="menu-list"><a href="#"
+                        class="text-9xl text-teal-500 pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
+                <li class="menu-list"><a href="#"
+                        class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">calendar_month</i>
+                        予定管理</a></li>
+                <li class="menu-list"><a href="#"
+                        class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">new_releases</i>
+                        ポイント</a></li>
+                <li class="menu-list"><a href="./tasks/task_list.html"
+                        class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">task</i>
+                        タスク管理</a></li>
+                <li class="menu-list"><a href="#"
+                        class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">group</i>
+                        グループ管理</a></li>
+                <li class="menu-list"><a href="#"
+                        class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">local_activity</i>
+                        ご褒美管理</a></li>
+                <li class="flex-grow"></li>
+                <li class="menu-list"><a href="#"
+                        class=" text-stone-600 text-5xl py-10 px-24 mt-96 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">settings</i>
+                        設定</a></li>
+                <li class="menu-list"><a href="#"
+                        class=" text-stone-600 text-5xl py-10 px-24 mb-32 block hover:text-orange-300">
+                        <i class="material-icons text-teal-500 ">logout</i>
+                        ログアウト</a></li>
             </ul>
         </nav>
+
         <!-- iconとalarmの画像配置 -->
         <div class="flex justify-center absolute right-3">
-            <img class="w-24 h-24 bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" />
+            <!-- <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" /> -->
+            <!-- alarm icon 変更しました -->
+            <span id="noti icons"><i class="material-icons text-teal-500  py-0 px-2">notifications</i></span>
             <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
         </div>
     </header>
@@ -241,7 +157,7 @@
     <main>
         <!-- タイトルとタスクの新規作成ボタン -->
         <div class="flex justify-between mt-10">
-            <h1 class="text-orange-400 text-7xl ml-9">タスクリスト</h1>
+            <h1 class="text-7xl ml-9">タスクリスト</h1>
             <button id="new_createBtn" class="flex justify-between mr-10">
                 <span id="add_circle" class="material-icons ml-4">add_circle</span>
                 <p class="text-3xl mr-10">新規</p>
@@ -268,44 +184,45 @@
             $(".js-btn").on("click", function () {
                 $(".menu").toggleClass("open");
                 $(".btn-line").toggleClass("open");
+                $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
             });
         });
 
         // サンプルデータ
         const tasks = [
             { name: "ゴミ", completed: true },
-        { name: "かいもの", completed: false },
-        { name: "せんたく", completed: true },
-        { name: "そうじ", completed: false },
-        { name: "さらあらい", completed: true },
-        { name: "りょうり", completed: false },
-      ];
+            { name: "かいもの", completed: false },
+            { name: "せんたく", completed: true },
+            { name: "そうじ", completed: false },
+            { name: "さらあらい", completed: true },
+            { name: "りょうり", completed: false },
+        ];
 
-      // タスクリストの表示
-      const task_list = document.getElementById("task_container");
-      tasks.forEach((task) => {
-        // タスクのコンテナを作成
-        const task_item = document.createElement("div");
-        task_item.className =
-          "flex items-center w-auto h-36 bg-orange-50 border-4 border-orange-50 rounded-3xl mt-10 mb-16 relative";
+        // タスクリストの表示
+        const task_list = document.getElementById("task_container");
+        tasks.forEach((task) => {
+            // タスクのコンテナを作成
+            const task_item = document.createElement("div");
+            task_item.className =
+            "flex items-center w-auto h-36 bg-orange-50 border-4 border-orange-50 rounded-3xl mt-10 mb-16 relative";
 
-        // タスクのチェックボタンを表示
-        const checkSpan = document.createElement("span");
-        checkSpan.id = "check_circle";
-        checkSpan.className = "material-icons absolute left-4";
-        checkSpan.textContent = "check_circle";
-        checkSpan.classList.add(task.completed ? "completed" : "incomplete");
+            // タスクのチェックボタンを表示
+            const checkSpan = document.createElement("span");
+            checkSpan.id = "check_circle";
+            checkSpan.className = "material-icons absolute left-4";
+            checkSpan.textContent = "check_circle";
+            checkSpan.classList.add(task.completed ? "completed" : "incomplete");
 
-        // タスクの名前を表示
-        const taskText = document.createElement("p");
-        taskText.textContent = task.name;
-        taskText.className = "text-6xl text-center flex-grow mx-auto";
+            // タスクの名前を表示
+            const taskText = document.createElement("p");
+            taskText.textContent = task.name;
+            taskText.className = "text-6xl text-center flex-grow mx-auto";
 
-        // タスクのコンテナに追加
-        task_item.appendChild(checkSpan);
-        task_item.appendChild(taskText);
-        task_list.appendChild(task_item);
-      });
+            // タスクのコンテナに追加
+            task_item.appendChild(checkSpan);
+            task_item.appendChild(taskText);
+            task_list.appendChild(task_item);
+        });
     </script>
-  </body>
+    </body>
 </html>
