@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="../../css/admin/task_create.css">
     <!-- Google fonts Icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <title>タスク作成画面</title>
     <style>
         body {
@@ -18,12 +20,12 @@
             color: #4AB4A1;
         }
         h2{
-            font-size: 35px;
-            margin-top: 2rem;
+            font-size: 30px;
+            margin-top: 1rem;
             margin-bottom: 1.5rem;
         }
         .material-icons{
-            color:#666666;
+            color: #4AB4A1;
             font-size: 60px;
         }
         .confirm_btn{
@@ -39,9 +41,17 @@
         #file_upload{
             height: 240px;
         }
+        select {
+            -webkit-appearance: none;/* ベンダープレフィックス(Google Chrome、Safari用) */
+            -moz-appearance: none; /* ベンダープレフィックス(Firefox用) */
+            appearance: none; /* 標準のスタイルを無効にする */
+        }
+        ::-ms-expand { /* select要素のデザインを無効にする（IE用） */
+            display: none;
+        }
     </style>
 </head>
-    <body>
+    <body class="font-kiwi-maru">
         <header>
             <!-- 戻るボタン -->
             <div class="h-32 pt-16 pl-6">
@@ -59,13 +69,22 @@
                     </div>
                     <h2>締め切り</h2>
                     <div class="relative flex w-11/12 h-32 mx-auto">
-                        <span id="alarm_on" class="material-icons absolute top-8 left-8">alarm_on</span>
+                        <span class="material-icons absolute top-8 left-8">alarm_on</span>
                         <!-- <div id="datetime-display" class="datetime-display m-auto">〇〇月〇〇日〇〇時〇〇分</div> -->
-                        <input type="datetime-local" name="deadline" id="deadline" class="w-full h-full text-5xl rounded-3xl bg-orange-50 text-center"/>
+                        <input type="datetime-local" name="task_deadline" id="task_deadline" class="w-full h-full text-5xl rounded-3xl bg-orange-50 text-center"/>
+                    </div>
+                    <h2>承諾締め切り</h2>
+                    <div class="relative flex w-11/12 h-32 mx-auto">
+                        <span class="material-icons absolute top-8 left-8">alarm_on</span>
+                        <!-- <div id="datetime-display" class="datetime-display m-auto">〇〇月〇〇日〇〇時〇〇分</div> -->
+                        <input type="datetime-local" name="consent_deadline" id="consent_deadline" class="w-full h-full text-5xl rounded-3xl bg-orange-50 text-center"/>
                     </div>
                     <h2>振り分け</h2>
-                    <div id="members-container" class="flex flex-row overflow-x-scroll border-4 rounded-3xl mx-auto w-11/12 h-56 bg-orange-50 border-orange-50">
-                        <!-- ユーザーの表示 -->
+                    <div class="relative flex w-11/12 h-32 mx-auto bg-orange-50 rounded-3xl">
+                        <select name="user_select" id="user_select" class="w-7/12 h-20 rounded-full text-4xl bg-white text-center m-auto">
+
+                        </select>
+                        <span class="material-icons absolute top-9 right-20">expand_circle_down</span>
                     </div>
                     <h2>画像</h2>
                     <label for="task_image_upload">
@@ -94,37 +113,15 @@
                 {id:4, name: 'お父さん', icon: '/frontend/images/father_image.png'}
             ]
 
-            document.addEventListener('DOMContentLoaded', function () {
-                // ユーザーを表示
-                users.forEach(user =>  {
-                    const user_label = document.createElement('label');
-                    user_label.className = 'flex w-1/4 h-full flex-shrink-0 js_user_select';
-                    user_label.innerHTML = `
-                        <input type="radio" name="members" value="${user.id}" class="hidden"/>
-                        <img src="${user.icon}" class="w-36 h-36 rounded-full m-auto">
-                    `;
-                    document.querySelector('#members-container').appendChild(user_label);
-                })
-
-                // ユーザーの選択状態の表示
-                const user_labels = document.querySelectorAll('.js_user_select');
-                user_labels.forEach(user_label => {
-                    user_label.addEventListener('click', function () {
-                        // アイコンのボーダーをリセット
-                        user_labels.forEach(label => {
-                            const img = label.querySelector('img');
-                            if (img) {
-                                img.style.border = 'none';
-                            }
-                        });
-                        // 選択されたアイコンをボーダーで囲う処理
-                        const selectedImg = user_label.querySelector('img');
-                        if (selectedImg) {
-                            selectedImg.style.border = '7px solid #4AB4A1';
-                        }
-                    });
-                });
+            // プルダウンメニューの作成
+            const userSelect = document.getElementById('user_select');
+            users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.textContent = user.name;
+                userSelect.appendChild(option);
             });
+
             // 画像プレビューとアップロード
             function previewImage(event) {
                 const file = event.target.files[0];
