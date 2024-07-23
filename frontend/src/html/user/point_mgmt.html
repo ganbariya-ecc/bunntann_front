@@ -86,15 +86,15 @@
                 <p id="points" class="text-center text-4xl"><span id="points-span" class="text-8xl">ポイント</span>pt</p>
             </div>
             <!-- ランキング -->
-            <div class="items-center border-l-orange-50 bg-orange-50 boorder-4 w-4/5 h-4/6 mr-auto ml-auto rounded-3xl">
-                <h2 class="text-center text-7xl pt-12">ランキング</h2>
+            <div class="flex flex-col items-center border-l-orange-50 bg-orange-50 boorder-4 w-4/5 h-4/6 mr-auto ml-auto rounded-3xl">
+                <select class ="text-5xl rounded-lg w-8/12 text-center text-teal-500 bg-orange-50 mt-10">
+                    <option value="monthly">ランキング/月間</option>
+                    <option value="weekly">ランキング/週間</option>
+                </select>
                 <!-- ランキングコンテナ -->
-                    <div id="ranking" class="h-5/6 w-4/5 mt-16 mr-auto ml-auto overflow-y-scroll">
+                    <div id="ranking" class="h-5/6 w-4/5 mt-10 mr-auto ml-auto overflow-y-scroll">
                         <!-- ランキングの表示-->
                     </div>
-                <div>
-                    
-                </div>
             </div>
         </main>
         <script>
@@ -118,11 +118,16 @@
                 ]
             };
 
+            // トロフィー画像のパス
+            const trophyImages = [
+                "/frontend/images/Trophy_1_gold.png","/frontend/images/Trophy_2_silver.png","/frontend/images/Trophy_3_bronze.png","/frontend/images/Trophy_4.png"
+            ]
+
             // データをポイントの多い順にソート
             sampleData.ranking.sort((a, b) => b.points - a.points);
 
             // ポイントを表示
-            document.getElementById('points-span').textContent = sampleData.points;
+            document.getElementById('points-span').textContent = sampleData.points.toLocaleString();
 
             // ランキングを表示
             const rankingContainer = document.getElementById('ranking');
@@ -131,10 +136,10 @@
                 rankingItem.className = 'flex justify-between items-center bg-white h-36 mb-10 rounded-3xl';
                 rankingItem.innerHTML = `
                     <div class="flex items-center">
-                        <span class="text-7xl ml-4">${index + 1}</span>
+                        <img src="${trophyImages[index]}" alt="trophy" class="w-16 h-16 ml-4">
                         <span class="text-6xl ml-6">${item.name}</span>
                     </div>
-                    <span class="text-5xl mr-4">${item.points}pt</span>
+                    <span class="text-5xl mr-4">${item.points.toLocaleString()}pt</span>
                 `;
                 rankingContainer.appendChild(rankingItem);
             });
