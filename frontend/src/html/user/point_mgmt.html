@@ -5,35 +5,20 @@
         <title>ポイント管理</title>
         <link rel="stylesheet" href="/frontend/src/css/hamburger_menu.css">
         <link rel="stylesheet" href="/frontend/src/css/user/point_mgmt.css">
+
+        <!-- setall.cssの追加 -->
+        <link rel="stylesheet" href="/frontend/src/css/setall.css" />
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <style>
-            body {
-                height: 100vh;
-                overflow: hidden;
-                background: rgba(246, 219, 186, 0.5);
-                header {
-                    height: 20%;
-                }
-                main{
-                    height: 80%;
-                }
-            }
-            /* タイトル文字の間隔 */
-            h1,h2 {
-                letter-spacing: .1em;
-                color: #4AB4A1;
-            }
-        </style>
     </head>
-    <body class="box-border font-kiwi-maru">
+    <body class="bg-main-color font-coment">
         <!-- グレイレイヤー -->
         <div class="overlay">
         </div>
-
         <!-- header要素 -->
         <header class="h-40  flex items-center">
             <!-- ハンバーガーメニュー -->
@@ -45,27 +30,27 @@
             <nav>
                 <ul class="menu text-left lex-1 flex flex-col">
                     <li class="menu-list"><a href="#"
-                            class="text-9xl text-teal-500 pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
+                            class="text-9xl text-main-font-color pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">new_releases</i>
+                            <i class="material-icons text-main-font-color ">new_releases</i>
                             ポイント</a></li>
                     <li class="menu-list"><a href="./tasks/task_list.html"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">task</i>
+                            <i class="material-icons text-main-font-color ">task</i>
                             タスク管理</a></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">group</i>
+                            <i class="material-icons text-main-font-color ">group</i>
                             グループ管理</a></li>
                     <li class="flex-grow"></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">settings</i>
+                            <i class="material-icons text-main-font-color ">settings</i>
                             設定</a></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 mb-32 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">logout</i>
+                            <i class="material-icons text-main-font-color ">logout</i>
                             ログアウト</a></li>
                 </ul>
             </nav>
@@ -74,25 +59,26 @@
             <div class="flex justify-center absolute right-3">
                 <!-- <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" /> -->
                 <!-- alarm icon 変更しました -->
-                <span id="noti icons"><i class="material-icons text-teal-500  py-0 px-2">notifications</i></span>
+                <span id="noti icons"><i class="material-icons text-main-font-color  py-0 px-2">notifications</i></span>
                 <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
             </div>
         </header>
         <main>
             <!-- タイトル -->
-            <h1 class="text-8xl mt-24 ml-14">ポイント</h1>
+            <h1 class="text-8xl mt-24 ml-14 tracking-widest text-main-font-color">ポイント</h1>
             <!-- ポイント表示　-->
-            <div class="flex items-center justify-center h-2/6">
+            <div class="flex items-center justify-center h-96">
                 <p id="points" class="text-center text-4xl"><span id="points-span" class="text-8xl">ポイント</span>pt</p>
             </div>
             <!-- ランキング -->
-            <div class="flex flex-col items-center border-l-orange-50 bg-orange-50 boorder-4 w-4/5 h-4/6 mr-auto ml-auto rounded-3xl">
-                <select class ="text-5xl rounded-lg w-8/12 text-center text-teal-500 bg-orange-50 mt-10">
+            <div class="flex flex-col items-center bg-sub-color border-4 border-white w-4/5 mb-20 mr-auto ml-auto rounded-3xl">
+                <select class ="text-6xl tracking-widest rounded-lg w-8/12 text-center text-main-font-color bg-sub-color mt-10">
                     <option value="monthly">ランキング/月間</option>
                     <option value="weekly">ランキング/週間</option>
                 </select>
                 <!-- ランキングコンテナ -->
-                    <div id="ranking" class="h-5/6 w-4/5 mt-10 mr-auto ml-auto overflow-y-scroll">
+                    <!-- コンテナサイズを固定したくてstyleを直接書いたけどよくなかったら消してもらえたら　　-->
+                    <div id="ranking" class="w-4/5 mt-10 mr-auto ml-auto overflow-y-scroll" style="height: 900px;">
                         <!-- ランキングの表示-->
                     </div>
             </div>
@@ -111,7 +97,7 @@
             const sampleData = {
                 points: 12000,
                 ranking: [
-                    { name: "お母さん", points: 8000 },
+                    { name: "おとうと", points: 8000 },
                     { name: "お兄さん", points: 7000 },
                     { name: "いもうと", points: 12000 },
                     { name: "お父さん", points: 5000 }
@@ -133,13 +119,13 @@
             const rankingContainer = document.getElementById('ranking');
             sampleData.ranking.forEach((item, index) => {
                 const rankingItem = document.createElement('div');
-                rankingItem.className = 'flex justify-between items-center bg-white h-36 mb-10 rounded-3xl';
+                rankingItem.className = 'flex justify-between items-center bg-white h-36 mb-14 rounded-3xl';
                 rankingItem.innerHTML = `
                     <div class="flex items-center">
                         <img src="${trophyImages[index]}" alt="trophy" class="w-16 h-16 ml-4">
                         <span class="text-6xl ml-6">${item.name}</span>
                     </div>
-                    <span class="text-5xl mr-4">${item.points.toLocaleString()}pt</span>
+                    <span class="text-4xl mr-4">${item.points.toLocaleString()}pt</span>
                 `;
                 rankingContainer.appendChild(rankingItem);
             });
