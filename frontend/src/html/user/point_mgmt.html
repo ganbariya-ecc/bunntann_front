@@ -5,10 +5,6 @@
         <title>ポイント管理</title>
         <link rel="stylesheet" href="/frontend/src/css/hamburger_menu.css">
         <link rel="stylesheet" href="/frontend/src/css/user/point_mgmt.css">
-
-        <!-- setall.cssの追加 -->
-        <link rel="stylesheet" href="/frontend/src/css/setall.css" />
-
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
@@ -65,14 +61,14 @@
         </header>
         <main>
             <!-- タイトル -->
-            <h1 class="text-8xl mt-24 ml-14 tracking-widest text-main-font-color">ポイント</h1>
+            <h1 class="text-8xl mt-24 ml-14 tracking-widest text-main-font-color font-title">ポイント</h1>
             <!-- ポイント表示　-->
             <div class="flex items-center justify-center h-96">
                 <p id="points" class="text-center text-4xl"><span id="points-span" class="text-8xl">ポイント</span>pt</p>
             </div>
             <!-- ランキング -->
             <div class="flex flex-col items-center bg-sub-color border-4 border-white w-4/5 mb-20 mr-auto ml-auto rounded-3xl">
-                <select class ="text-6xl tracking-widest rounded-lg w-8/12 text-center text-main-font-color bg-sub-color mt-10">
+                <select class ="text-6xl tracking-widest rounded-lg w-8/12 text-center text-main-font-color bg-orange-50 mt-10">
                     <option value="monthly">ランキング/月間</option>
                     <option value="weekly">ランキング/週間</option>
                 </select>
@@ -82,52 +78,10 @@
                     </div>
             </div>
         </main>
-        <script>
-            // ハンバーガーメニューのjsd
-            $(function () {
-                $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
-                    $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
-                    $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
-                    $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
-                });
-            });
 
-            // サンプルデータ
-            const sampleData = {
-                points: 12000,
-                ranking: [
-                    { name: "おとうと", points: 8000 },
-                    { name: "お兄さん", points: 7000 },
-                    { name: "いもうと", points: 12000 },
-                    { name: "お父さん", points: 5000 }
-                ]
-            };
-
-            // トロフィー画像のパス
-            const trophyImages = [
-                "/frontend/images/Trophy_1_gold.png","/frontend/images/Trophy_2_silver.png","/frontend/images/Trophy_3_bronze.png","/frontend/images/Trophy_4.png"
-            ]
-
-            // データをポイントの多い順にソート
-            sampleData.ranking.sort((a, b) => b.points - a.points);
-
-            // ポイントを表示
-            document.getElementById('points-span').textContent = sampleData.points.toLocaleString();
-
-            // ランキングを表示
-            const rankingContainer = document.getElementById('ranking');
-            sampleData.ranking.forEach((item, index) => {
-                const rankingItem = document.createElement('div');
-                rankingItem.className = 'flex justify-between items-center bg-white h-36 mb-14 rounded-3xl';
-                rankingItem.innerHTML = `
-                    <div class="flex items-center">
-                        <img src="${trophyImages[index]}" alt="trophy" class="w-16 h-16 ml-4">
-                        <span class="text-6xl ml-6">${item.name}</span>
-                    </div>
-                    <span class="text-4xl mr-4">${item.points.toLocaleString()}pt</span>
-                `;
-                rankingContainer.appendChild(rankingItem);
-            });
-        </script>
+        <!-- 追記しました　-->
+        <script src="/frontend/src/js/hamburger_menu.js"></script>
+        <script src="/frontend/src/js/point_mgmt.js"></script>
+        <link rel="stylesheet" href="/frontend/src/css/setall.css" />
     </body>
 </html>
