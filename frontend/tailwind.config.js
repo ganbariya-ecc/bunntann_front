@@ -13,7 +13,8 @@ module.exports = {
         'main-color': 'rgba(246, 219, 186, 0.5)',
         'sub-color': 'rgba(255 247 237)',
         'main-font-color': '#4AB4A1',
-
+        'completed': '#FFEDDD',
+        'incomplete': '#71CDEE'
       },
     },
   },
