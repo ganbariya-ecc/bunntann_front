@@ -100,29 +100,19 @@
             </div> -->
         </main>
         <!-- script要素 -->
+        <script src="/statics/app/appjs/loader.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script>
-            const task = {
-                status: '手伝ってください！',
-                title: 'かいもの',
-                image: '/frontend/images/supermarket.png', //　画像URL
-                message: 'ライフスーパーにパスタソースをかってほしい。\nじぶんが好きなあじをえらんでもいいよ。\nおねがい。',
-                deadline: '2024/06/05 19:30'
-            };
-    
-            // 改行文字を <br> に変換
-            const formattedMessage = task.message.replace(/\n/g, '<br>');
-            // データをDOMに表示
-            document.getElementById('status-message').textContent = task.status;
-            document.querySelector('h1').textContent = task.title;
-            document.getElementById('task-image').src = task.image;
-            document.getElementById('task-message').innerHTML = formattedMessage;
-        </script>
-        <!-- 追記しました　-->
+        <script src="/statics/app/appjs/authsdk.js"></script>
+        <script src="/statics/app/appjs/appsdk.js"></script>
+        <script src="/statics/app/appjs/member.js"></script>
+        <script src="/statics/app/appjs/Tasks.js"></script>
+        <script src="./scripts/task_info.js"></script>
+        <script src="/statics/app/appjs/UserInfo.js"></script>
+        <link rel="stylesheet" href="/statics/app/css/setall.css">
+        <!-- 追記しました　 setallは上に入ってるから消してください　-->
         <script src="/frontend/src/js/hamburger_menu.js"></script>
-
         <link rel="stylesheet" href="/frontend/src/css/setall.css" />
     </body>
 </html>
