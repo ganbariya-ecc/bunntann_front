@@ -6,8 +6,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'kiwi-maru': ['"Kiwi Maru"', ...defaultTheme.fontFamily.sans],
-        'yusei-magic': ['"Yusei Magic"', ...defaultTheme.fontFamily.sans],
+        'coment': ['"Kiwi Maru"', ...defaultTheme.fontFamily.sans],
+        'title': ['"Yusei Magic"', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        'main-color': 'rgba(246, 219, 186, 0.5)',
+        'sub-color': 'rgba(255 247 237)',
+        'main-font-color': '#4AB4A1',
+
       },
     },
   },
