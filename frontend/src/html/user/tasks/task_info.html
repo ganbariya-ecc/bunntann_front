@@ -8,64 +8,11 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
-        <style>
-            body {
-                height: 100vh;
-                overflow: hidden;
-                background: rgba(246, 219, 186, 0.5);
-                header {
-                    height: 20%;
-                }
-                main{
-                    height: 80%;
-                }
-                /* footer{
-                    height: 30%;
-                } */
-            }
-            h1 {
-                color: #4AB4A1;
-            }
-            main .material-icons {
-                font-size: 90px;
-            }
-            #status-message ,#task-message, #task-deadline {
-                font-size: 40px;
-                line-height: 1;
-            }
-            #countdown .text-red-500 {
-                font-size: 50px; /* カウントダウンの文字サイズ */
-            }
-            /*戻るボタン、終わりボタンのスタイル*/
-            .back-btn{
-                background-color: #4AB4A1; /* ボタンの背景色 */
-                border-bottom: 4px solid #FFA07A; /* 下線の色 */
-                box-shadow: 0.1em 0.1em 3px rgba(0, 0, 0, 0.5); /* 影の設定 */
-                width: 350px; 
-                height: 125px;
-                border: none;
-                border-radius: 50px;
-                font-size: 40px;
-            }
-            .end-btn{
-                background-color: #BCE6FF; /* ボタンの背景色 */
-                border-bottom: 4px solid #FFA07A; /* 下線の色 */
-                box-shadow: 0.1em 0.1em 3px rgba(0, 0, 0, 0.5); /* 影の設定 */
-                width: 350px; 
-                height: 125px;
-                border: none;
-                border-radius: 50px;
-                font-size: 40px;
-            }
-
-            
-        </style>
     </head>
-    <body class="box-border font-kiwi-maru">
+    <body class="bg-main-color font-coment">
         <!-- グレイレイヤー -->
         <div class="overlay">
         </div>
-
         <!-- header要素 -->
         <header class="h-40  flex items-center">
             <!-- ハンバーガーメニュー -->
@@ -77,27 +24,27 @@
             <nav>
                 <ul class="menu text-left lex-1 flex flex-col">
                     <li class="menu-list"><a href="#"
-                            class="text-9xl text-teal-500 pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
+                            class="text-9xl text-main-font-color pt-24 pb-2 px-14 mb-32 block font-yusei-magic">ぶんたん</a></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">new_releases</i>
+                            <i class="material-icons text-main-font-color ">new_releases</i>
                             ポイント</a></li>
                     <li class="menu-list"><a href="./tasks/task_list.html"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">task</i>
+                            <i class="material-icons text-main-font-color ">task</i>
                             タスク管理</a></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">group</i>
+                            <i class="material-icons text-main-font-color ">group</i>
                             グループ管理</a></li>
                     <li class="flex-grow"></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">settings</i>
+                            <i class="material-icons text-main-font-color ">settings</i>
                             設定</a></li>
                     <li class="menu-list"><a href="#"
                             class=" text-stone-600 text-5xl py-10 px-24 mb-32 block hover:text-orange-300">
-                            <i class="material-icons text-teal-500 ">logout</i>
+                            <i class="material-icons text-main-font-color ">logout</i>
                             ログアウト</a></li>
                 </ul>
             </nav>
@@ -106,108 +53,66 @@
             <div class="flex justify-center absolute right-3">
                 <!-- <img class="w-24 h-24  bg-white rounded-full mr-6 mt-0" src="/frontend/images/alarm.png" alt="alarm" /> -->
                 <!-- alarm icon 変更しました -->
-                <span id="noti icons"><i class="material-icons text-teal-500  py-0 px-2">notifications</i></span>
+                <span id="noti icons"><i class="material-icons text-main-font-color py-0 px-2">notifications</i></span>
                 <img class="w-24 h-24 bg-white rounded-full" src="/frontend/images/icon.png" alt="icon" />
             </div>
         </header>
         <!-- main要素 -->
         <main class="flex flex-col items-center">
+            <!-- 削除ボタンこっちに追加してみたけどあんまりかな？-->
+            <button id="delete_button" class="absolute right-10 bg-orange-50 rounded-full h-16 flex justify-between mr-6 mt-5">
+                <span id="delete_forever" class="material-icons ml-6 text-main-font-color" style="font-size: 40px;">delete_forever</span>
+                <p class="text-4xl mr-10">削除</p>
+            </button>
             <!-- タスクタイトル表示 -->
-            <div class="flex justify-center items-end mt-14 pb-4">
-                <h1 class="text-8xl font-bold flex justify-center items-end">タスクのタイトル</h1>
+            <div class="flex justify-center items-end mt-20 pb-4">
+                <h1 class="text-8xl font-bold flex justify-center items-end text-main-font-color">タスクのタイトル</h1>
             </div>
             <!-- 現在のステータスを表示 -->
-            <div class="flex border-orange-50 bg-orange-50 border-4 mt-16 w-4/5 h-56 items-center rounded-3xl">
-                <span class="material-icons text-orange-500 ml-12">notifications</span>
-                <span class="ml-6" id="status-message">ステータスメッセージの表示</span>
+            <div class="flex border-orange-50 bg-orange-50 border-4 mt-16 w-4/5 h-44 items-center rounded-3xl">
+                <span class="material-icons text-orange-500 ml-12" style="font-size: 90px;">notifications</span>
+                <span class="ml-6 text-4xl" id="status-message">ステータスメッセージの表示</span>
             </div>
             <!-- タスクの詳細コンテナ　-->
             <div class="task-info-container flex flex-col items-center mt-10 ml-16 mr-16 pl-8 pr-8 w-9/12 h-4/6">
                 <!-- タスクの残り時間の表示 -->
                 <div class="pb-10" id="countdown">
-                    <span class="text-red-500"id="days"></span>
-                    <span class="text-red-500"id="hours"></span>
-                    <span class="text-red-500"id="minutes"></span>
-                    <span class="text-red-500"id="seconds"></span>
+                    <span class="text-red-500" id="countdown_time"></span>
                 </div>
                 <!-- タスクのイメージ画像　-->
                 <div class="rounded-3xl overflow-hidden h-3/6">
                     <img src="" alt="Task Image" class="w-full h-full" id="task-image"/>
                 </div>
                 <!-- メッセージコンテナ -->
-                <div class="mt-14 h-2/6">
-                    <p class="leading-normal tracking-widest" id="task-message">タスクに対するメッセージを表示</p>
+                <div class="mt-14 mb-10 h-[20dvh]">
+                    <p class="leading-normal tracking-widest text-4xl" id="task-message">タスクに対するメッセージを表示</p>
                 </div>
             </div>
             <!-- ボタン　-->
             <div class="flex justify-between">
-                <button class="back-btn text-center mr-20">戻る</button>
-                <button class="end-btn text-center">終わり</button>
+                <button class="back-btn text-center mr-20 bg-main-font-color w-[350px] h-[125px] shadow-2xl border-0 rounded-[50px] text-[40px]" id="back_button">戻る</button>
+                <button class="end-btn text-center bg-[#BCE6FF] w-[350px] h-[125px] shadow-2xl border-0 rounded-[50px] text-[40px]" id="submit_button">終わり</button>
             </div>
+            <!-- 削除ボタン結合の時の方がよかったらこっちそのまま使ってください　-->
+            <!-- <div class="flex justify-between mt-10">
+                <button class="back-btn text-center mr-20 bg-main-font-color w-[350px] h-[125px] shadow-2xl border-0 rounded-[50px] text-[40px]s" id="delete_button">削除</button>
+                <button class="end-btn text-center" style="opacity: 0;"></button>
+            </div> -->
         </main>
         <!-- script要素 -->
+        <script src="/statics/app/appjs/loader.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script>
-            // ハンバーガーメニューのjs
-            $(function () {
-                $('.js-btn').on('click', function () { // js-btnクラスをクリックすると、
-                    $('.menu').toggleClass('open'); // メニューにopenクラスをつけ外しする
-                    $('.btn-line').toggleClass('open'); // バーガーの線にopenクラスをつけ外しする
-                    $('.overlay').toggleClass('show'); // グレイレイヤーにshowクラスをつけ外しする
-                });
-            });
-            // サンプルデータ
-            const task = {
-                status: '手伝ってください！',
-                title: 'かいもの',
-                image: '/frontend/images/supermarket.png', //　画像URL
-                message: 'ライフスーパーにパスタソースをかってほしい。\nじぶんが好きなあじをえらんでもいいよ。\nおねがい。',
-                deadline: '2024/06/05 19:30'
-            };
-    
-            // 改行文字を <br> に変換
-            const formattedMessage = task.message.replace(/\n/g, '<br>');
-            // データをDOMに表示
-            document.getElementById('status-message').textContent = task.status;
-            document.querySelector('h1').textContent = task.title;
-            document.getElementById('task-image').src = task.image;
-            document.getElementById('task-message').innerHTML = formattedMessage;
-
-            // カウントダウンのサンプルコードのコピー
-            $(document).ready(function() {
-                // カウントダウンの終了日時を設定
-                let countdownDate = new Date("2024-06-12T00:00:00");
-
-                let x = setInterval(function() {
-                    
-                    // 現在の日時を取得
-                    let now = new Date();
-                    
-                    // カウントダウンまでの残り時間を計算
-                    let distance = countdownDate - now;
-
-                    // 残り時間を日数、時間、分、秒に変換
-                    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    // カウントダウンが終了した場合はメッセージを表示してタイマーを停止
-                    if (distance < 0) {
-                    clearInterval(x);
-                    $("#countdown").html("<span>カウントダウン終了</span>");
-                    } else {
-                    // 残り時間を表示
-                    $("#days").text(days + ":");
-                    $("#hours").text(hours + ":");
-                    $("#minutes").text(minutes + ":");
-                    $("#seconds").text(seconds + ":");
-                    }
-                }, 1000); // 1000ミリ秒ごとに更新
-            });
-
-        </script>
+        <script src="/statics/app/appjs/authsdk.js"></script>
+        <script src="/statics/app/appjs/appsdk.js"></script>
+        <script src="/statics/app/appjs/member.js"></script>
+        <script src="/statics/app/appjs/Tasks.js"></script>
+        <script src="./scripts/task_info.js"></script>
+        <script src="/statics/app/appjs/UserInfo.js"></script>
+        <link rel="stylesheet" href="/statics/app/css/setall.css">
+        <!-- 追記しました　 setallは上に入ってるから消してください　-->
+        <script src="/frontend/src/js/hamburger_menu.js"></script>
+        <link rel="stylesheet" href="/frontend/src/css/setall.css" />
     </body>
 </html>
