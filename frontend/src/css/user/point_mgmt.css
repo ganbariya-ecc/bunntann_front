@@ -915,6 +915,10 @@ video {
   height: 24rem;
 }
 
+.h-\[50dvh\] {
+  height: 50dvh;
+}
+
 .h-auto {
   height: auto;
 }
@@ -925,14 +929,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[50vh\] {
-  height: 50vh;
-}
-
-.h-\[50dvh\] {
-  height: 50dvh;
 }
 
 .w-10 {
@@ -1315,6 +1311,10 @@ video {
 
 .font-coment {
   font-family: "Kiwi Maru", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-title {
+  font-family: "Yusei Magic", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .text-2xl {
