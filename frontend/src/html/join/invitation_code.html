@@ -5,33 +5,31 @@
     <meta charset="UTF-8">
     <title>参加画面</title>
     <link rel="stylesheet" href="/frontend/src/css/join/invitation_code.css">
-    <style>
-        body {
-            background-color: rgba(246, 219, 186, 0.5);
-            height: 100vh;
-            overflow: hidden;
-
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 </head>
-
-<body class="flex justify-center items-center h-screen ">
-
+<body class="bg-main-color font-coment">
     <!-- main -->
     <main class="text-center h-full w-full">
         <a href="#"><img class="ml-10 mt-7 w-9 h-12" src="/frontend/images/back.png" alt="戻る"></a>
-        <p class="text-6xl mt-48 mb-8 text-orange-500">招待コードを入力してください</p>
+        <p class="text-6xl mt-48 mb-8 text-main-font-color">招待コードを入力してください</p>
         <div class="w-auto">
             <input class="mt-24 text-3xl font-light w-4/5 h-24 rounded-3xl" type="text">
-            <button class="mt-16 text-6xl bg-red-200 font-light px-12 py-6 rounded-xl">参加</button>
+            <button class="mt-16 text-6xl bg-[#BCE6FF] font-light py-8 px-24 shadow-2xl border-0 rounded-[50px]">参加</button>
         </div>
-        <p class="text-5xl mt-32 top-1/2text-center">------------または------------</p>
+        <p class="text-5xl mt-32 top-1/2 text-center text-gray-300">------------または------------</p>
         <div>
-            <p class="text-6xl mt-48 mb-8 text-orange-500">QRコードを読み取り</p>
-            <button class="mt-24 text-6xl bg-red-200 font-light px-12 py-6 rounded-xl">カメラを起動</button>
+            <p class="text-6xl mt-48 mb-8 text-main-font-color">QRコードを読み取り</p>
+            <button class="mt-24 text-6xl bg-[#BCE6FF] font-light py-8 px-12 shadow-2xl border-0 rounded-[50px] tems-center space-x-2">
+                <span class="material-icons" style="font-size: 40px;">qr_code_scanner</span>
+                <span>カメラを起動</span>
+            </button>
         </div>
 
     </main>
+    <!-- 追記 -->
+    <link rel="stylesheet" href="/frontend/src/css/setall.css" />
 </body>
 
 </html>
