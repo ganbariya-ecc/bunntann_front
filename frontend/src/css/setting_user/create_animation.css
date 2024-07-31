@@ -1,0 +1,60 @@
+/* グループ名作成時のアニメーション */
+
+.cp_input_text {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.cp_input_text input[type='text'] {
+    font: 40px/24px sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    letter-spacing: 1px;
+    padding-left: 4em;
+}
+
+.cp_input_text input[type='text']:focus {
+    outline: none;
+}
+
+.ef {
+    padding: 4px 0;
+    border: 0;
+    margin-top: 10px;
+    border-bottom: 1px solid;
+    background-color: transparent;
+}
+
+.ef~.focus_line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: 0.4s;
+}
+
+.ef:focus~.focus_line,
+.cp_input_text.ef~.focus_line {
+    width: 100%;
+    transition: 0.4s;
+}
+
+.ef~label {
+    position: absolute;
+    z-index: -1;
+    top: 4px;
+    left: 0;
+    width: 100%;
+    transition: 0.3s;
+    letter-spacing: 0.5px;
+}
+
+.ef:focus~label,
+.cp_input_text.ef~label {
+    font-size: 12px;
+    top: -16px;
+    transition: 0.3s;
+    font-size: x-large;
+}
