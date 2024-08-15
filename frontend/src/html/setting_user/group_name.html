@@ -5,85 +5,16 @@
     <meta charset="UTF-8">
     <title>グループ作成画面</title>
     <link rel="stylesheet" href="/frontend/src/css/setting_user/group_name.css">
-    <style>
-        body {
-            background-color: rgba(246, 219, 186, 0.5);
-            overflow: hidden;
-        }
-
-        /* グループ名作成時のアニメーション */
-
-        .cp_input_text {
-            position: relative;
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        .cp_input_text input[type='text'] {
-            font: 40px/24px sans-serif;
-            box-sizing: border-box;
-            width: 100%;
-            letter-spacing: 1px;
-            padding-left: 4em;
-        }
-
-        .cp_input_text input[type='text']:focus {
-            outline: none;
-        }
-
-        .ef {
-            padding: 4px 0;
-            border: 0;
-            margin-top: 10px;
-            border-bottom: 1px solid #E07448;
-            background-color: transparent;
-        }
-
-        .ef~.focus_line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            transition: 0.4s;
-            background-color: #E07448;
-        }
-
-        .ef:focus~.focus_line,
-        .cp_input_text.ef~.focus_line {
-            width: 100%;
-            transition: 0.4s;
-        }
-
-        .ef~label {
-            position: absolute;
-            z-index: -1;
-            top: 4px;
-            left: 0;
-            width: 100%;
-            transition: 0.3s;
-            letter-spacing: 0.5px;
-            color: #E07448;
-        }
-
-        .ef:focus~label,
-        .cp_input_text.ef~label {
-            font-size: 12px;
-            top: -16px;
-            transition: 0.3s;
-            color: #E07448;
-            font-size: x-large;
-        }
-    </style>
+    <link rel="stylesheet" href="/frontend/src/css/setting_user/create_animation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 </head>
-
-<body class="h-screen ">
-
+<body class="bg-main-color font-coment">
     <!-- main -->
     <main class="h-full w-full">
         <a href="#"><img class="ml-10 mt-7 w-9 h-12" src="/frontend/images/back.png" alt="戻る"></a>
         <!-- グループ名の作成 -->
-        <p class="text-6xl mt-48 mb-24 text-center text-orange-500">グループ名を入力してください</p>
+        <p class="text-6xl mt-48 mb-24 text-center text-main-font-color">グループ名を入力してください</p>
         <!-- 入力 -->
         <div class="cp_input_text">
             <input class="ef text-4xl" type="text" placeholder="">
@@ -92,13 +23,20 @@
         </div>
 
         <!-- メンバー -->
-        <p class="text-6xl mt-10 mb-24 text-center text-orange-500">グループメンバーを追加してください</p>
-        <div class="grid mr-auto ml-auto mt-11 bg-amber-100 w-4/5 h-1/2">
+        <p class="text-6xl mt-10 mb-24 text-center text-main-font-color">グループメンバーを追加してください</p>
+        <div class="grid mr-auto ml-auto mt-11 bg-sub-color w-4/5 h-[50dvh] rounded-3xl border-4 border-white">
             <input class="mr-auto ml-auto mt-24 text-3xl font-light w-4/5 h-24 rounded-3xl" type="text">
             <button class="mr-auto ml-auto mt-4"><img src="/frontend/images/add.png" alt="追加ボタン"></button>
         </div>
-        <button class="block mr-auto ml-auto mt-24 text-6xl bg-orange-300 font-light px-12 py-6 rounded-2xl">作成</button>
+        <button class="block mr-auto ml-auto mt-24 text-6xl bg-[#BCE6FF] font-light px-24 py-6 shadow-2xl border-0 rounded-3xl">作成</button>
     </main>
+    <script src="/statics/app/appjs/authsdk.js"></script>
+    <script src="/statics/app/appjs/appsdk.js"></script>
+    <script src="./scripts/group_name.js"></script>
+    <link rel="stylesheet" href="/statics/app/css/setall.css">
+    <!-- 追記 -->
+    <link rel="stylesheet" href="/frontend/src/css/setall.css" />
 </body>
+
 
 </html>
