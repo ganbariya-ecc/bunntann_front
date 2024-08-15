@@ -5,144 +5,48 @@
     <meta charset="UTF-8">
     <title>管理者確定画面</title>
     <link rel="stylesheet" href="/frontend/src/css/setting_user/menber_check.css">
-    <style>
-        body {
-            background-color: rgba(246, 219, 186, 0.5);
-            overflow: hidden;
-        }
-
-        /* チェックボックス */
-        input[type=checkbox] {
-            display: none;
-        }
-
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            /* ボックスの内側に余白を追加 */
-        }
-
-        .checkbox-label {
-            display: block;
-            cursor: pointer;
-            position: relative;
-            font-size: 64px;
-            margin: 0;
-        }
-
-        .checkbox-label::before {
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            content: '';
-            display: block;
-            height: 48px;
-            /* チェックボックスのサイズ */
-            left: 0;
-            /* チェックボックスを左に配置 */
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            /* チェックボックスのサイズ */
-        }
-
-        .checkbox-label::after {
-            border-right: 10px solid #fedd1e;
-            /* チェックマークの太さ */
-            border-bottom: 5px solid #fedd1e;
-            /* チェックマークの太さ */
-            content: '';
-            display: block;
-            height: 56px;
-            /* チェックマークの大きさ */
-            left: 7px;
-            /* チェックボックスとチェックマークの間隔 */
-            margin-top: -40px;
-            /* チェックマークを中央揃え */
-            opacity: 0;
-            position: absolute;
-            top: 50%;
-            transform: rotate(45deg) translate3d(0, 2px, 0) scale3d(.7, .7, 1);
-            transition: transform .2s ease-in-out, opacity .2s ease-in-out;
-            width: 32px;
-            /* チェックマークの大きさ */
-        }
-
-        input[type=checkbox]:checked+.checkbox-label::before {
-            border-color: #666;
-        }
-
-        input[type=checkbox]:checked+.checkbox-label::after {
-            opacity: 1;
-            transform: rotate(45deg) scale3d(1, 1, 1);
-        }
-
-        .text-label {
-            font-size: 64px;
-            margin-left: 40px;
-            /* チェックボックスとテキストの間隔 */
-            text-align: center;
-            flex: 1;
-            /* テキストラベルを中央に配置 */
-        }
-    </style>
+    <link rel="stylesheet" href="/frontend/src/css/setting_user/checkbox.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 </head>
-
-<body class="h-screen">
-
+<body class="bg-main-color font-coment">
     <!-- main -->
-    <main class="h-full w-full">
-        <a class="absolute top-5 left-5 " href="#"><img class="w-16 h-24" src="/frontend/images/back.png" alt="戻る"></a>
+    <main>
+        <a class="absolute top-10 left-5" href="#"><img class="w-10 h-14" src="/frontend/images/back.png" alt="戻る"></a>
         <!-- メンバー -->
-        <p class="text-6xl mt-40 mb-24 text-center text-orange-500">管理者メンバーを選んでください</p>
-        <div class="mt-11 w-full h-3/6 overflow-scroll hidden-scrollbar">
+        <p class="text-6xl mt-96 mb-24 text-center text-main-font-color font-title">管理者メンバーを選んでください</p>
+        <div class="mt-11 w-full h-1/2 overflow-scroll hidden-scrollbar">
             <!-- チェックボタン -->
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
+            <div class="bg-sub-color w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
                 <input type="checkbox" id="father" checked="checked">
                 <label for="father" class="checkbox-label"></label>
-                <label for="father" class="text-label">お父さん</label>
+                <!-- textのスタイルをtailwindに変更 -->
+                <label for="father" class="text-[64px] ml-[40px] text-center flex-1">お父さん</label>
             </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
+            <div class="bg-sub-color w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
                 <input type="checkbox" id="daughter" checked="checked">
                 <label for="daughter" class="checkbox-label"></label>
-                <label for="daughter" class="text-label">娘</label>
+                <label for="daughter" class="text-[64px] ml-[40px] text-center flex-1">娘</label>
             </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
+            <div class="bg-sub-color w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
                 <input type="checkbox" id="son" checked="checked">
                 <label for="son" class="checkbox-label"></label>
-                <label for="son" class="text-label">息子</label>
+                <label for="son" class="text-[64px] ml-[40px] text-center flex-1">息子</label>
             </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
+            <div class="bg-sub-color w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
                 <input type="checkbox" id="son" checked="checked">
                 <label for="son" class="checkbox-label"></label>
-                <label for="son" class="text-label">息子</label>
+                <label for="son" class="text-[64px] ml-[40px] text-center flex-1">息子</label>
             </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
-                <input type="checkbox" id="son" checked="checked">
-                <label for="son" class="checkbox-label"></label>
-                <label for="son" class="text-label">息子</label>
-            </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
-                <input type="checkbox" id="son" checked="checked">
-                <label for="son" class="checkbox-label"></label>
-                <label for="son" class="text-label">息子</label>
-            </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
-                <input type="checkbox" id="son" checked="checked">
-                <label for="son" class="checkbox-label"></label>
-                <label for="son" class="text-label">息子</label>
-            </div>
-            <div class="bg-amber-100 w-8/12 mt-10 flex justify-center ml-auto mr-auto checkbox-wrapper">
-                <input type="checkbox" id="son" checked="checked">
-                <label for="son" class="checkbox-label"></label>
-                <label for="son" class="text-label">息子</label>
-            </div>
-
         </div>
-        <button class="block mr-auto ml-auto mt-24 text-6xl bg-orange-300 font-light px-12 py-6 rounded-2xl">確定</button>
+        <button class="block mx-auto mt-36 text-6xl bg-[#BCE6FF] font-light px-12 py-6 w-4/12 h-[125px] shadow-2xl border-0 rounded-[50px]">確定</button>
     </main>
+    <script src="/statics/app/appjs/authsdk.js"></script>
+    <script src="/statics/app/appjs/appsdk.js"></script>
+    <script src="./scripts/menber_check.js"></script>
+    <link rel="stylesheet" href="/statics/app/css/setall.css">
+    <!-- 追記しました　 -->
+    <link rel="stylesheet" href="/frontend/src/css/setall.css" />
 </body>
 
 </html>
